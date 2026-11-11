@@ -29,6 +29,8 @@ import Nature from './pages/Nature';
 import BorderTourism from './pages/BorderTourism';
 import Photoshoot from './pages/Photoshoot';
 import KashmirHimalayanCircuit from './pages/KashmirHimalayanCircuit';
+import LadakhRoutes from './pages/LadakhRoutes';
+import LadakhRouteDetail from './pages/LadakhRouteDetail';
 import Literature from './pages/Literature';
 import Articles from './pages/Articles';
 import ArticleDetail from './pages/ArticleDetail';
@@ -45,6 +47,7 @@ import AdminDestinations from './pages/admin/AdminDestinations';
 import AdminHotels from './pages/admin/AdminHotels';
 import AdminPackages from './pages/admin/AdminPackages';
 import AdminTreks from './pages/admin/AdminTreks';
+import AdminRoutes from './pages/admin/AdminRoutes';
 import AdminActivities from './pages/admin/AdminActivities';
 import AdminHomestays from './pages/admin/AdminHomestays';
 import AdminHouseboats from './pages/admin/AdminHouseboats';
@@ -111,6 +114,10 @@ export default function App() {
         <Route path="photoshoot/:id" element={<Photoshoot />} />
         <Route path="khc" element={<KashmirHimalayanCircuit />} />
         <Route path="khc/:section" element={<KashmirHimalayanCircuit />} />
+        <Route path="ladakh-routes" element={<LadakhRoutes />} />
+        <Route path="ladakh-routes/:slug" element={<LadakhRouteDetail />} />
+        <Route path="routes" element={<LadakhRoutes />} />
+        <Route path="routes/:slug" element={<LadakhRouteDetail />} />
         <Route path="literature" element={<Literature />} />
         <Route path="articles" element={<Articles />} />
         <Route path="articles/:slug" element={<ArticleDetail />} />
@@ -135,6 +142,7 @@ export default function App() {
         <Route path="hotels" element={<AdminHotels />} />
         <Route path="packages" element={<AdminPackages />} />
         <Route path="treks" element={<AdminTreks />} />
+        <Route path="routes" element={<AdminRoutes />} />
         <Route path="activities" element={<AdminActivities />} />
         <Route path="homestays" element={<AdminHomestays />} />
         <Route path="houseboats" element={<AdminHouseboats />} />

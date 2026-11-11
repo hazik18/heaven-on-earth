@@ -59,6 +59,7 @@ export default function Footer() {
           <div>
             <h6 className="font-bold mb-6 text-sm uppercase tracking-widest text-white">Explore</h6>
             <ul className="space-y-3 text-slate-300 text-sm">
+              <li><Link to="/ladakh-routes" className="hover:text-primary transition-colors">Ladakh Route Catalogue</Link></li>
               <li><Link to="/packages" className="hover:text-primary transition-colors">Tour Packages</Link></li>
               <li><Link to="/trekking" className="hover:text-primary transition-colors">Trekking</Link></li>
               <li><Link to="/activities" className="hover:text-primary transition-colors">Adventure Sport</Link></li>
@@ -98,7 +99,7 @@ export default function Footer() {
             {['Srinagar', 'Gulmarg', 'Pahalgam', 'Sonamarg', 'Leh-Ladakh', 'Yusmarg', 'Doodhpathri', 'Gurez Valley'].map((dest) => (
               <Link
                 key={dest}
-                to={`/hotels?destination=${dest.toLowerCase().replace(' ', '-')}`}
+                to={dest === 'Leh-Ladakh' ? '/ladakh-routes' : `/hotels?destination=${dest.toLowerCase().replace(' ', '-')}`}
                 className="bg-slate-800 hover:bg-[#FF8C00] border border-slate-600 hover:border-[#FF8C00] px-4 py-2 rounded-full text-xs text-slate-300 hover:text-white transition-all"
               >
                 {dest}

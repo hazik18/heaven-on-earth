@@ -28,6 +28,7 @@ const photoshootLinks = [
 ];
 
 const adventureLinks = [
+  { label: 'Ladakh Route Catalogue', to: '/ladakh-routes' },
   { label: 'Kashmir Himalayan Circuit', to: '/activities?category=himalayan-circuit' },
   { label: 'Offbeat', to: '/activities?category=offbeat' },
   { label: 'Trekking', to: '/trekking' },
@@ -252,6 +253,7 @@ export default function Navbar() {
               </div>
 
               <Link to="/border-tourism" className="hover:text-primary transition-colors">Border Tourism</Link>
+              <Link to="/ladakh-routes" className="hover:text-primary transition-colors">Ladakh Routes</Link>
 
               {/* Photoshoot dropdown */}
               <div ref={photoshootRef} className="relative" onMouseEnter={() => setPhotoshootOpen(true)} onMouseLeave={() => setPhotoshootOpen(false)}>
@@ -374,6 +376,7 @@ export default function Navbar() {
               </div>
 
               <Link to="/border-tourism" onClick={() => setMenuOpen(false)} className="block py-2 hover:text-primary">Border Tourism</Link>
+              <Link to="/ladakh-routes" onClick={() => setMenuOpen(false)} className="block py-2 hover:text-primary">Ladakh Routes</Link>
 
               {/* Photoshoot mobile accordion */}
               <div>

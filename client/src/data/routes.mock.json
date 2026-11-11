@@ -1,0 +1,639 @@
+[
+  {
+    "id": "route-01-srinagar-leh-nh1d",
+    "_id": "route-01-srinagar-leh-nh1d",
+    "title": "Srinagar-Leh Highway (NH-1D)",
+    "slug": "srinagar-leh-highway-nh1d",
+    "category": "highway",
+    "from_location": "Srinagar",
+    "to_location": "Leh",
+    "approx_distance": "approx. 420–434 km",
+    "approx_duration": "approx. 2 days (Kargil halt)",
+    "approx_cost": "approx. ₹18,000–26,000 (private SUV transfer)",
+    "mode": "Car / Bike / 4x4",
+    "key_passes": [
+      { "name": "Zoji La", "altitude": "approx. 3,528 m" },
+      { "name": "Namika La", "altitude": "approx. 3,700 m" },
+      { "name": "Fotu La", "altitude": "approx. 4,108 m" }
+    ],
+    "permits_required": false,
+    "permit_details": {
+      "indian": "No Inner Line / highway permit required for NH-1D transit between Srinagar and Leh. Standard ID proof required at checkposts.",
+      "foreigner": "No Protected Area Permit (PAP) required for direct NH-1D highway transit; passport & visa registration at Drass/Khaltse checkposts."
+    },
+    "best_season": "May–Nov",
+    "highlights": [
+      "Zoji La Pass (approx. 3,528 m) — Dramatic transition from lush Kashmir to stark Ladakh",
+      "Drass & Kargil War Memorial — Tribute at Bhimbet along the Tololing foothills",
+      "Kargil Overnight Halt — Gradual altitude gain ideal for acclimatisation",
+      "Mulbekh Chamba — 9-metre rock-carved Maitreya Buddha statue",
+      "Lamayuru Moonland & Monastery — Ancient paleolake badlands",
+      "Sangam (Indus–Zanskar Confluence), Magnetic Hill & Gurudwara Pathar Sahib"
+    ],
+    "itinerary_summary": "The historic **Srinagar-Leh Highway (NH-1D)** spans **approx. 420–434 km** and is universally recommended as the gentler acclimatisation entry into Ladakh. Completed over **approx. 2 days** with an overnight halt at **Kargil (approx. 2,676 m)**, the route ascends gradually from the pine-forested Sindh Valley at Sonamarg across **Zoji La (approx. 3,528 m)** into Drass, before crossing **Namika La (approx. 3,700 m)** and **Fotu La (approx. 4,108 m)** into the Indus Valley at Leh.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Srinagar to Kargil via Sonamarg, Zoji La & Drass",
+        "description": "Depart Srinagar early morning and drive up the scenic Sindh Valley past Wayil Bridge and Sonamarg (approx. 2,730 m). Ascend the dramatic switchbacks of Zoji La (approx. 3,528 m) to enter Ladakh's Kargil district. Stop at Gumri checkpost, Zero Point, and the Kargil War Memorial at Drass before reaching Kargil along the Suru River for an overnight halt.",
+        "distance": "approx. 204 km",
+        "altitude": "approx. 2,676 m (Kargil)",
+        "duration": "approx. 6–7 hrs"
+      },
+      {
+        "day": 2,
+        "title": "Kargil to Leh via Mulbekh, Fotu La, Lamayuru & Sham Valley",
+        "description": "Continue east from Kargil to Mulbekh to view the ancient rock-cut Maitreya Buddha. Cross Namika La (approx. 3,700 m) and Fotu La (approx. 4,108 m — the highest point on NH-1D). Descend past the lunar badlands of Lamayuru Monastery, cross the Indus at Khaltse, and visit Alchi, Likir, Sangam (Indus-Zanskar confluence), Magnetic Hill, and Gurudwara Pathar Sahib before arriving in Leh.",
+        "distance": "approx. 216–230 km",
+        "altitude": "approx. 3,500 m (Leh)",
+        "duration": "approx. 6–7 hrs"
+      }
+    ],
+    "images": [
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "/gurev-4.jpg",
+      "https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=1600"
+    ],
+    "isFeatured": true,
+    "isActive": true
+  },
+  {
+    "id": "route-02-manali-leh-nh3",
+    "_id": "route-02-manali-leh-nh3",
+    "title": "Manali-Leh Highway (NH-3)",
+    "slug": "manali-leh-highway-nh3",
+    "category": "highway",
+    "from_location": "Manali",
+    "to_location": "Leh",
+    "approx_distance": "approx. 430–490 km",
+    "approx_duration": "approx. 2 days (Jispa/Sarchu halt)",
+    "approx_cost": "approx. ₹22,000–32,000 (private SUV transfer)",
+    "mode": "Car / Bike / 4x4",
+    "key_passes": [
+      { "name": "Baralacha La", "altitude": "approx. 4,890 m" },
+      { "name": "Nakee La", "altitude": "approx. 4,739 m" },
+      { "name": "Lachulung La", "altitude": "approx. 5,059 m" },
+      { "name": "Tanglang La", "altitude": "approx. 5,328 m" }
+    ],
+    "permits_required": false,
+    "permit_details": {
+      "indian": "No Ladakh highway permit required on NH-3 via Atal Tunnel (Rohtang Pass requires separate NGT permit only if bypassing the tunnel).",
+      "foreigner": "No Protected Area Permit (PAP) required for standard NH-3 highway transit; passport registration at Sarchu/Upshi checkposts."
+    },
+    "best_season": "Jun–early Oct",
+    "highlights": [
+      "Atal Tunnel into Lahaul Valley (Keylong & Jispa)",
+      "Baralacha La (approx. 4,890 m) & Emerald Suraj Tal Lake",
+      "Jispa (approx. 3,200 m) or Sarchu (approx. 4,290 m) Overnight Halt",
+      "Gata Loops — Iconic 21 hairpin bends ascending Nakee La",
+      "Moore Plains — approx. 40 km high-altitude plateau drive at approx. 4,700 m",
+      "Tanglang La (approx. 5,328 m) — One of the highest highway passes in Ladakh"
+    ],
+    "itinerary_summary": "The legendary **Manali-Leh Highway (NH-3)** covers **approx. 430–490 km** across high Trans-Himalayan desert plateaus and four major passes. Completed over **approx. 2 days** with an overnight halt at **Jispa** (recommended for safer sleep altitude) or **Sarchu**, this route climbs rapidly above 4,800 m at **Baralacha La**, **Lachulung La**, and **Tanglang La (approx. 5,328 m)**.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Manali to Jispa / Sarchu via Atal Tunnel, Keylong & Baralacha La",
+        "description": "Drive from Manali through the 9.02 km Atal Tunnel into the Chandra and Bhaga valleys of Lahaul. Pass Sissu, Tandi (important fuel stop), Keylong, and Jispa (approx. 3,200 m — preferred overnight halt for better acclimatisation). Those continuing to Sarchu cross Darcha, Deepak Tal, Suraj Tal, and Baralacha La (approx. 4,890 m) to camp on the Himachal-Ladakh border plains at Sarchu.",
+        "distance": "approx. 140 km (to Jispa) / approx. 222 km (to Sarchu)",
+        "altitude": "approx. 3,200 m (Jispa) / approx. 4,290 m (Sarchu)",
+        "duration": "approx. 4–5 hrs (Jispa) / approx. 7–8 hrs (Sarchu)"
+      },
+      {
+        "day": 2,
+        "title": "Jispa / Sarchu to Leh via Gata Loops, Moore Plains & Tanglang La",
+        "description": "Set off early to climb the 21 hairpin bends of Gata Loops up to Nakee La (approx. 4,739 m) and Lachulung La (approx. 5,059 m). Descend through the dramatic canyons of Pang and cruise across the 40 km Moore Plains plateau before ascending Tanglang La (approx. 5,328 m). Descend into the Indus Valley via Rumtse, Upshi, and Karu to reach Leh.",
+        "distance": "approx. 250–330 km",
+        "altitude": "approx. 5,328 m max (Tanglang La) → approx. 3,500 m (Leh)",
+        "duration": "approx. 7–10 hrs"
+      }
+    ],
+    "images": [
+      "https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "/gurev-4.jpg"
+    ],
+    "isFeatured": true,
+    "isActive": true
+  },
+  {
+    "id": "route-03-manali-leh-zanskar",
+    "_id": "route-03-manali-leh-zanskar",
+    "title": "Manali-Leh via Zanskar (Nimmu-Padum-Darcha)",
+    "slug": "manali-leh-via-zanskar-nimmu-padum-darcha",
+    "category": "highway",
+    "from_location": "Manali",
+    "to_location": "Leh (via Padum & Zanskar)",
+    "approx_distance": "approx. 700 km",
+    "approx_duration": "approx. 5–7 days",
+    "approx_cost": "approx. ₹45,000–65,000 (expedition 4x4 circuit)",
+    "mode": "4x4 / Adventure Bike",
+    "key_passes": [
+      { "name": "Shinku La", "altitude": "approx. 5,050 m" },
+      { "name": "Pensi La", "altitude": "approx. 4,400 m" },
+      { "name": "Singge La", "altitude": "approx. 4,960 m" },
+      { "name": "Sirsir La", "altitude": "approx. 4,805 m" }
+    ],
+    "permits_required": true,
+    "permit_details": {
+      "indian": "Environment Development Fee (EDF) online via lahdclehpermit.in (approx. ₹400–600 per person) plus police checkpost registration at Darcha, Kargyak, and Padum.",
+      "foreigner": "Protected Area Permit (PAP) mandatory for certain inner Ladakh/Zanskar link segments; must be arranged in advance via a registered local operator like Kashmir Offbeat."
+    },
+    "best_season": "mid-Jun–early Oct",
+    "highlights": [
+      "Shinku La Pass (approx. 5,050 m) — Gateway from Lahaul into the Lungnak Valley of Zanskar",
+      "Gumbok Rangan (Gonbo Rangjon) — Sacred standalone monolith peak in Kargyak Valley",
+      "Purney & Phugtal Monastery — Cliffside honeycomb gompa above the Tsarap River",
+      "Padum Valley — Karsha, Stongdey & Bardan Monasteries",
+      "Pensi La (approx. 4,400 m) & Drang Drung Glacier Excursion",
+      "Lingshed / Wanla / Zanskar Gorge Corridor to Nimmu & Leh"
+    ],
+    "itinerary_summary": "The newly connected **Manali-Leh via Zanskar (Nimmu-Padum-Darcha)** expedition spans **approx. 700 km** over **approx. 5–7 days**. Linking Lahaul's Darcha valley across **Shinku La (approx. 5,050 m)** into Zanskar's Lungnak valley, Padum, **Pensi La**, and onward via the high passes of Singge La/Sirsir La (or the Zanskar river corridor) to Nimmu and Leh, it is one of the finest overland adventures in the Himalaya.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Manali to Jispa / Darcha via Atal Tunnel & Keylong",
+        "description": "Drive from Manali through the Atal Tunnel to Keylong, Jispa, and Darcha. Complete police checkpost formalities and acclimatise overnight in the Bhaga Valley.",
+        "distance": "approx. 145 km",
+        "altitude": "approx. 3,360 m",
+        "duration": "approx. 4–5 hrs"
+      },
+      {
+        "day": 2,
+        "title": "Darcha to Purne via Shinku La (approx. 5,050 m) & Gonbo Rangjon",
+        "description": "Ascend the Zanskar Sumdo valley to cross Shinku La (approx. 5,050 m) into Zanskar. Marvel at the towering granite face of Gonbo Rangjon near Kargyak and continue past Tangze and Kurgiakh villages to Purne.",
+        "distance": "approx. 115 km",
+        "altitude": "approx. 3,800 m (Purne)",
+        "duration": "approx. 6–7 hrs"
+      },
+      {
+        "day": 3,
+        "title": "Purne — Phugtal Monastery Trek & Drive to Padum",
+        "description": "Morning hike (approx. 3–4 hrs round trip) along the turquoise Tsarap River gorge to the dramatic cliff-built Phugtal Monastery. Return to Purne and drive via Ichar and Bardan Monastery into Padum, the administrative heart of Zanskar.",
+        "distance": "approx. 65 km drive + approx. 12 km trek",
+        "altitude": "approx. 3,657 m (Padum)",
+        "duration": "approx. 6–7 hrs"
+      },
+      {
+        "day": 4,
+        "title": "Padum Exploration & Excursion to Pensi La & Drang Drung Glacier",
+        "description": "Explore Karsha Monastery and drive up the Stod Valley across Pensi La (approx. 4,400 m) for close-up views of the colossal Drang Drung Glacier and twin alpine lakes Statso & Langtso. Return to Padum or Zangla for overnight stay.",
+        "distance": "approx. 160 km round trip",
+        "altitude": "approx. 4,400 m max (Pensi La)",
+        "duration": "approx. 5–6 hrs"
+      },
+      {
+        "day": 5,
+        "title": "Padum to Wanla / Lamayuru via Zansla, Singge La & Sirsir La",
+        "description": "Traverse the remote trans-Zanskar mountain road via Zangla, Photoksar, Singge La (approx. 4,960 m), and Sirsir La (approx. 4,805 m) through Honupatta gorge to Wanla and Lamayuru.",
+        "distance": "approx. 195 km",
+        "altitude": "approx. 4,960 m max",
+        "duration": "approx. 7–8 hrs"
+      },
+      {
+        "day": 6,
+        "title": "Wanla / Lamayuru to Leh via Nimmu & Sangam",
+        "description": "Drive along the Indus River visiting Alchi or Basgo, stopping at the Indus-Zanskar confluence at Nimmu (Sangam) and Magnetic Hill before reaching Leh.",
+        "distance": "approx. 115–125 km",
+        "altitude": "approx. 3,500 m (Leh)",
+        "duration": "approx. 3–4 hrs"
+      }
+    ],
+    "images": [
+      "/gurev-4.jpg",
+      "https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600"
+    ],
+    "isFeatured": true,
+    "isActive": true
+  },
+  {
+    "id": "route-04-leh-nubra-valley",
+    "_id": "route-04-leh-nubra-valley",
+    "title": "Leh to Nubra Valley",
+    "slug": "leh-to-nubra-valley",
+    "category": "lake_valley",
+    "from_location": "Leh",
+    "to_location": "Nubra Valley (Diskit, Hunder & Turtuk)",
+    "approx_distance": "approx. 120 km (approx. 200 km to Turtuk)",
+    "approx_duration": "approx. 5–6 hrs (via Khardung La)",
+    "approx_cost": "approx. ₹14,000–22,000 (2–3 day private vehicle circuit)",
+    "mode": "Car / Bike / 4x4",
+    "key_passes": [
+      { "name": "Khardung La", "altitude": "approx. 5,359 m" }
+    ],
+    "permits_required": true,
+    "permit_details": {
+      "indian": "Environment Development Fee (EDF / Inner Line Permit) mandatory via lahdclehpermit.in (approx. ₹400 ENV fee + ₹20/day Red Cross + ₹10/day wildlife fee, totalling approx. ₹400–600). Carry 3–4 printed copies for South Pullu, North Pullu, and Turtuk checkposts.",
+      "foreigner": "Protected Area Permit (PAP) mandatory for Nubra Valley (Diskit, Hunder, Turtuk, Panamik). Must be booked for a minimum group of 2+ via a registered local operator like Kashmir Offbeat."
+    },
+    "best_season": "May–Sep",
+    "highlights": [
+      "Khardung La Pass (approx. 5,359 m) — Gateway from the Indus to the Shyok & Nubra Valleys",
+      "Diskit Monastery — 14th-century gompa & 32-metre Maitreya Buddha statue overlooking the valley",
+      "Hunder Cold Desert — Silvery sand dunes & endangered double-humped Bactrian camels",
+      "Turtuk Village (approx. 200 km from Leh) — Historic Balti cultural village on the Shyok River",
+      "Sumur & Panamik — Samstanling Monastery & geothermal hot springs"
+    ],
+    "itinerary_summary": "The classic **Leh to Nubra Valley** journey spans **approx. 120 km** (taking **approx. 5–6 hrs**) across the iconic **Khardung La (approx. 5,359 m)** into the broad confluence of the Shyok and Siachen (Nubra) rivers. The circuit covers **Diskit** and **Hunder** at approx. 3,048 m, with a highly recommended extension along the Shyok gorge to **Turtuk (approx. 200 km total from Leh)** near the Line of Control.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Leh to Diskit & Hunder via Khardung La (approx. 5,359 m)",
+        "description": "After completing 2 nights of mandatory acclimatisation in Leh, ascend north via South Pullu checkpost to Khardung La (approx. 5,359 m). Keep your stop at the pass brief (10–15 mins) to avoid altitude sickness, then descend via North Pullu and Khardung village to Khalsar along the Shyok River. Visit Diskit Monastery and the towering Maitreya Buddha before continuing 7 km to the sand dunes of Hunder.",
+        "distance": "approx. 120 km",
+        "altitude": "approx. 5,359 m max (Khardung La) → approx. 3,048 m (Hunder)",
+        "duration": "approx. 5–6 hrs"
+      },
+      {
+        "day": 2,
+        "title": "Hunder to Turtuk Day Excursion (or Overnight) & Return",
+        "description": "Drive along the dramatic Shyok River corridor past Bogdang to Turtuk (approx. 80 km from Hunder; approx. 200 km from Leh). Opened to tourists in 2010, Turtuk offers lush apricot orchards, stone water-cooling channels, a 16th-century Polo Ground, and rich Balti heritage. Return to Hunder/Diskit or continue via the Agham-Shyok route to Pangong Tso.",
+        "distance": "approx. 160 km round trip from Hunder (approx. 200 km from Leh)",
+        "altitude": "approx. 2,800 m (Turtuk)",
+        "duration": "approx. 5–6 hrs round trip"
+      }
+    ],
+    "images": [
+      "https://images.squarespace-cdn.com/content/v1/64d82289391a252015f03974/c1174e88-47e1-4aff-8e31-c94130c9a0ce/AA+suran+katori+sar.jpg",
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "/gurev-4.jpg"
+    ],
+    "isFeatured": true,
+    "isActive": true
+  },
+  {
+    "id": "route-05-leh-pangong-tso",
+    "_id": "route-05-leh-pangong-tso",
+    "title": "Leh to Pangong Tso",
+    "slug": "leh-to-pangong-tso",
+    "category": "lake_valley",
+    "from_location": "Leh",
+    "to_location": "Pangong Tso (Spangmik, Man & Merak)",
+    "approx_distance": "approx. 160–220 km",
+    "approx_duration": "approx. 5–6 hrs (via Chang La)",
+    "approx_cost": "approx. ₹13,000–19,000 (2-day private SUV trip)",
+    "mode": "Car / Bike / 4x4",
+    "key_passes": [
+      { "name": "Chang La", "altitude": "approx. 5,360 m" }
+    ],
+    "permits_required": true,
+    "permit_details": {
+      "indian": "Environment Development Fee (EDF / Inner Line Permit) mandatory online via lahdclehpermit.in (approx. ₹400–600). Specify Pangong, Spangmik, Man, and Merak on the permit.",
+      "foreigner": "Protected Area Permit (PAP) mandatory; foreign tourists are permitted up to Spangmik/Merak as per current regulations and must book through a registered local operator like Kashmir Offbeat."
+    },
+    "best_season": "May–Oct",
+    "highlights": [
+      "Chang La Pass (approx. 5,360 m) — Steep high-altitude pass across the Ladakh Range",
+      "Pangong Tso (approx. 4,225 m) — 134 km endorheic lake shifting from turquoise to deep cobalt blue",
+      "Spangmik Shore — Classic panoramic views of the Changchenmo range",
+      "Man & Merak Villages — Tranquil lakeside settlements further southeast along Pangong",
+      "Tangtse & Durbuk Valley — Marmot meadows & Changthang grazing plains"
+    ],
+    "itinerary_summary": "The **Leh to Pangong Tso** route spans **approx. 160–220 km** (depending on whether approached directly via Karu/Chang La or via the Shyok valley from Nubra) and takes **approx. 5–6 hrs**. Crossing the formidable **Chang La (approx. 5,360 m)**, the road descends past Durbuk and Tangtse to the shimmering shores of **Pangong Tso (approx. 4,225 m)**, covering **Spangmik**, **Man**, and **Merak**.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Leh to Pangong Tso (Spangmik / Man / Merak) via Chang La (approx. 5,360 m)",
+        "description": "Depart Leh early and drive along the Indus to Karu and Sakti. Ascend the winding road over Chang La (approx. 5,360 m). Descend through Durbuk and Tangtse (permit checkpost), passing scenic meadows inhabited by Himalayan marmots, before catching the first glimpse of Pangong Tso at Lukung. Continue along the southern bank to Spangmik, Man, and Merak.",
+        "distance": "approx. 160–175 km (to Spangmik/Merak)",
+        "altitude": "approx. 5,360 m max (Chang La) → approx. 4,225 m (Pangong Tso)",
+        "duration": "approx. 5–6 hrs"
+      },
+      {
+        "day": 2,
+        "title": "Pangong Tso Sunrise & Return to Leh (or Continue to Hanle)",
+        "description": "Witness sunrise over the Changchenmo peaks reflected in Pangong's crystal waters. Retrace the route via Tangtse and Chang La back to Leh, visiting Thiksey or Hemis Monastery en route (or continue onward via Chushul & Tsaga La toward Hanle if holding permits).",
+        "distance": "approx. 160–220 km",
+        "altitude": "approx. 3,500 m (Leh)",
+        "duration": "approx. 5–6 hrs"
+      }
+    ],
+    "images": [
+      "https://images.squarespace-cdn.com/content/v1/64d82289391a252015f03974/b40ae2ae-3020-4f80-a9c6-4c63e5e1fa5a/Pir+Panjal+from+Dawa+.jpg",
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=1600"
+    ],
+    "isFeatured": true,
+    "isActive": true
+  },
+  {
+    "id": "route-06-leh-tso-moriri",
+    "_id": "route-06-leh-tso-moriri",
+    "title": "Leh to Tso Moriri (Korzok)",
+    "slug": "leh-to-tso-moriri-korzok",
+    "category": "lake_valley",
+    "from_location": "Leh",
+    "to_location": "Tso Moriri (Korzok)",
+    "approx_distance": "approx. 220–240 km",
+    "approx_duration": "approx. 6–7 hrs (via Chumathang)",
+    "approx_cost": "approx. ₹16,000–24,000 (2-day private SUV circuit)",
+    "mode": "Car / Bike / 4x4",
+    "key_passes": [
+      { "name": "Namshang La", "altitude": "approx. 4,800 m" },
+      { "name": "Polokongka La (Return Loop)", "altitude": "approx. 4,940 m" }
+    ],
+    "permits_required": true,
+    "permit_details": {
+      "indian": "Environment Development Fee (EDF / Inner Line Permit) mandatory via lahdclehpermit.in (approx. ₹400–600). Mention Chumathang, Mahe, Sumdo, and Tso Moriri (Korzok).",
+      "foreigner": "Protected Area Permit (PAP) mandatory; must be obtained via a registered local operator like Kashmir Offbeat."
+    },
+    "best_season": "May–Sep",
+    "highlights": [
+      "Tso Moriri (approx. 4,522 m) — Protected Ramsar Wetland in the Rupshu plateau",
+      "Korzok Village & Monastery — One of the highest permanently inhabited settlements in Ladakh",
+      "Chumathang Geothermal Springs — Steaming sulphur springs along the upper Indus bank",
+      "Kyagar Tso — Jewel-like saline lake just before Namshang La",
+      "Tso Kar & Puga Valley Loop — Return option past nomadic Changpa camps and Tibetan wild asses (Kiang)"
+    ],
+    "itinerary_summary": "The **Leh to Tso Moriri (Korzok)** route covers **approx. 220–240 km** in **approx. 6–7 hrs**, following the upper Indus River southeast through Upshi and **Chumathang** before turning south at Mahe Bridge via Sumdo and **Namshang La (approx. 4,800 m)** to the serene alpine basin of **Tso Moriri (approx. 4,522 m)**.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Leh to Korzok (Tso Moriri) via Upshi, Chumathang & Mahe Bridge",
+        "description": "Follow the Indus River upstream from Leh via Karu and Upshi checkpost through a dramatic river gorge to Chumathang (stop at the hot springs). Cross Mahe Bridge (permit check), turn into the Puga/Sumdo valley, pass the turquoise Kyagar Tso over Namshang La (approx. 4,800 m), and drive along the western shore of Tso Moriri to Korzok (approx. 4,522 m).",
+        "distance": "approx. 220 km",
+        "altitude": "approx. 4,522 m (Korzok)",
+        "duration": "approx. 6–7 hrs"
+      },
+      {
+        "day": 2,
+        "title": "Tso Moriri to Leh via Puga Hot Springs, Polokongka La, Tso Kar & Tanglang La",
+        "description": "Visit Korzok Monastery in the morning, then return via Puga geothermal valley and Polokongka La (approx. 4,940 m) to the white salt flats of Tso Kar lake — prime habitat for Kiang and Black-necked Cranes. Join NH-3 at Debring and cross Tanglang La (approx. 5,328 m) back to Leh.",
+        "distance": "approx. 240 km",
+        "altitude": "approx. 5,328 m max (Tanglang La) → approx. 3,500 m (Leh)",
+        "duration": "approx. 6–7 hrs"
+      }
+    ],
+    "images": [
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.squarespace-cdn.com/content/v1/64d82289391a252015f03974/c1174e88-47e1-4aff-8e31-c94130c9a0ce/AA+suran+katori+sar.jpg",
+      "/gurev-4.jpg"
+    ],
+    "isFeatured": false,
+    "isActive": true
+  },
+  {
+    "id": "route-07-leh-hanle-dark-sky",
+    "_id": "route-07-leh-hanle-dark-sky",
+    "title": "Leh to Hanle (Dark Sky Reserve)",
+    "slug": "leh-to-hanle-dark-sky-reserve",
+    "category": "offbeat",
+    "from_location": "Leh",
+    "to_location": "Hanle (Changthang)",
+    "approx_distance": "approx. 250–275 km",
+    "approx_duration": "approx. 8–10 hrs (via Chumathang/Nyoma)",
+    "approx_cost": "approx. ₹20,000–28,000 (2–3 day private SUV trip)",
+    "mode": "Car / Bike / 4x4",
+    "key_passes": [
+      { "name": "Hanle Plateau & Mt. Saraswati", "altitude": "approx. 4,500 m" }
+    ],
+    "permits_required": true,
+    "permit_details": {
+      "indian": "Environment Development Fee (EDF / Inner Line Permit) mandatory online via lahdclehpermit.in (approx. ₹400–600). Explicitly include Loma, Nyoma, and Hanle on the permit application.",
+      "foreigner": "Protected Area Permit (PAP) with special endorsement for Hanle (night stay subject to current MHA/LAHDC notifications); must be booked through a registered local operator like Kashmir Offbeat."
+    },
+    "best_season": "May–Sep",
+    "highlights": [
+      "Hanle Dark Sky Reserve — India's first officially designated Bortle-1 astro-tourism sanctuary",
+      "Indian Astronomical Observatory (IAO) — High-altitude optical, infrared & gamma-ray telescopes at approx. 4,500 m",
+      "Hanle Monastery — 17th-century Drukpa Kagyu gompa built under King Sengge Namgyal",
+      "Upper Indus Valley Drive — Scenic smooth highway via Chumathang, Mahe, Nyoma & Loma Bend",
+      "Changthang Wildlife — Sightings of Tibetan Wild Ass (Kiang), Tibetan Gazelle, and Black-necked Cranes"
+    ],
+    "itinerary_summary": "The **Leh to Hanle (Dark Sky Reserve)** journey spans **approx. 250–275 km** (taking **approx. 8–10 hrs**) along the upper Indus River via Upshi, **Chumathang**, Mahe, **Nyoma**, and Loma Bend into the vast Changthang steppe. Famous for its pristine **Bortle-1 night skies** and the **Indian Astronomical Observatory** at **approx. 4,500 m**, Hanle is Ladakh's premier offbeat stargazing destination.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Leh to Hanle via Upshi, Chumathang, Nyoma & Loma Bend",
+        "description": "Depart Leh early morning and follow the Indus River through Karu (last major fuel station) and Upshi. Stop for tea at Chumathang hot springs, continue past Mahe and Nyoma, and present permits at the Loma Bend checkpost before entering the wide Hanle River plains. Evening stargazing under Bortle-1 skies.",
+        "distance": "approx. 255–275 km",
+        "altitude": "approx. 4,500 m (Hanle)",
+        "duration": "approx. 8–10 hrs"
+      },
+      {
+        "day": 2,
+        "title": "Hanle Observatory, Hanle Monastery & Return (or Umling La Excursion)",
+        "description": "Visit the 17th-century Hanle Monastery for sweeping views of the Changthang basin and tour the Indian Astronomical Observatory atop Mt. Saraswati. Either undertake the day excursion to Umling La (approx. 5,798 m) or return to Leh / Tso Moriri.",
+        "distance": "approx. 255 km (return to Leh)",
+        "altitude": "approx. 4,500 m → approx. 3,500 m",
+        "duration": "approx. 8–9 hrs"
+      }
+    ],
+    "images": [
+      "https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "/gurev-4.jpg",
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600"
+    ],
+    "isFeatured": true,
+    "isActive": true
+  },
+  {
+    "id": "route-08-hanle-umling-la",
+    "_id": "route-08-hanle-umling-la",
+    "title": "Hanle to Umling La (Day Excursion)",
+    "slug": "hanle-to-umling-la-day-excursion",
+    "category": "offbeat",
+    "from_location": "Hanle",
+    "to_location": "Umling La (Round Trip)",
+    "approx_distance": "approx. 140–150 km round trip",
+    "approx_duration": "approx. 5–7 hrs (Day Excursion)",
+    "approx_cost": "approx. ₹8,000–12,000 (day excursion from Hanle)",
+    "mode": "4x4 / High-Clearance SUV / Adventure Bike",
+    "key_passes": [
+      { "name": "Umling La", "altitude": "approx. 5,798 m" },
+      { "name": "Photi La", "altitude": "approx. 5,524 m" },
+      { "name": "Norbu La", "altitude": "approx. 5,282 m" }
+    ],
+    "permits_required": true,
+    "permit_details": {
+      "indian": "Environment Development Fee (EDF / Inner Line Permit) online via lahdclehpermit.in (approx. ₹400–600) explicitly listing Hanle, Photi La, Chisumle, and Umling La. Carry multiple photocopies and original Aadhaar/Passport.",
+      "foreigner": "Restricted border sector near Demchok; foreign nationals require special MHA/PAP clearance verified through a registered local operator like Kashmir Offbeat prior to travel."
+    },
+    "best_season": "Jun–Sep",
+    "highlights": [
+      "Umling La (approx. 5,798 m / 19,024 ft) — One of the world's highest motorable roads built by BRO Project Himank",
+      "Photi La Route (approx. 5,524 m) or Direct Chisumle Bridge High-Plains Track",
+      "Extreme High-Altitude Trans-Himalayan Desert Panorama",
+      "Same-Day Return to Lower-Altitude Base at Hanle (approx. 4,500 m)"
+    ],
+    "itinerary_summary": "The **Hanle to Umling La (Day Excursion)** covers **approx. 140–150 km round trip** from Hanle to reach **approx. 5,798 m** — recognized as **one of the world's highest motorable roads**. Due to extreme altitude and ~50% lower oxygen levels than sea level, this route must only be attempted after thorough acclimatisation (minimum 2 nights in Leh plus 1 night in Nubra/Pangong/Hanle), and visitors should limit their summit stay to 10–15 minutes.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Hanle to Umling La (approx. 5,798 m) via Photi La / Chisumle & Return to Hanle",
+        "description": "Start from Hanle by 7:00 AM with extra fuel and portable oxygen. Drive either via the paved switchbacks of Photi La (approx. 5,524 m) or across the direct Chisumle Bridge plains track. Ascend from Chisumle checkpost along the BRO blacktop road via Norbu La to the summit of Umling La (approx. 5,798 m). Capture photographs at the milestone, keep halt under 15 minutes, and descend back to Hanle by afternoon.",
+        "distance": "approx. 140–150 km round trip",
+        "altitude": "approx. 5,798 m max (Umling La) → approx. 4,500 m (Hanle)",
+        "duration": "approx. 5–7 hrs"
+      }
+    ],
+    "images": [
+      "https://images.squarespace-cdn.com/content/v1/64d82289391a252015f03974/06f11de6-b746-4924-9e57-b9c4d5624b68/pexels-aliaksei-lepik-17955368.jpg",
+      "https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "/gurev-4.jpg"
+    ],
+    "isFeatured": true,
+    "isActive": true
+  },
+  {
+    "id": "route-09-leh-zanskar-padum",
+    "_id": "route-09-leh-zanskar-padum",
+    "title": "Leh to Zanskar (Padum)",
+    "slug": "leh-to-zanskar-padum",
+    "category": "offbeat",
+    "from_location": "Leh",
+    "to_location": "Padum (Zanskar)",
+    "approx_distance": "approx. 460 km",
+    "approx_duration": "approx. 2 days (via Kargil & Pensi La)",
+    "approx_cost": "approx. ₹28,000–38,000 (multi-day private 4x4/SUV)",
+    "mode": "4x4 / SUV / Adventure Bike",
+    "key_passes": [
+      { "name": "Fotu La", "altitude": "approx. 4,108 m" },
+      { "name": "Namika La", "altitude": "approx. 3,700 m" },
+      { "name": "Pensi La", "altitude": "approx. 4,400 m" }
+    ],
+    "permits_required": true,
+    "permit_details": {
+      "indian": "Environment Development Fee (EDF) via lahdclehpermit.in (approx. ₹400–600) plus mandatory registration at Sankoo, Panikhar, Parkachik, and Rangdum police checkposts.",
+      "foreigner": "Protected Area Permit (PAP) & Foreigner Registration required at Kargil/Rangdum checkposts; arrange through a registered local operator like Kashmir Offbeat."
+    },
+    "best_season": "Jun–Sep",
+    "highlights": [
+      "Suru Valley — Lush willow & poplar valley beneath the towering Nun (7,135 m) & Kun (7,077 m) peaks",
+      "Parkachik Glacier & Rangdum Monastery — Isolated 18th-century fortress gompa at approx. 4,031 m",
+      "Pensi La Pass (approx. 4,400 m) — Gateway into Zanskar with Statso & Langtso twin lakes",
+      "Drang Drung Glacier — Winding 23 km river of ice visible right from the road",
+      "Padum & Karsha Monastery — Cultural heartland of the Zanskar kingdom"
+    ],
+    "itinerary_summary": "The classic **Leh to Zanskar (Padum)** overland journey covers **approx. 460 km** over **approx. 2 days** via **Kargil**, the scenic **Suru Valley**, and **Pensi La (approx. 4,400 m)**. Along the way, travellers witness the twin 7,000-metre massifs of Nun and Kun, the isolated gompa of Rangdum, and the majestic **Drang Drung Glacier** before entering the broad Padum basin.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Leh to Kargil / Rangdum via Lamayuru, Fotu La & Suru Valley",
+        "description": "Drive west from Leh on NH-1D across Fotu La (approx. 4,108 m) and Namika La (approx. 3,700 m) to Kargil (important last major fuel station before Padum). Turn south into the fertile Suru Valley past Sankoo, Panikhar, and Parkachik with close views of Nun-Kun glaciers. Halt overnight at Kargil, Parkachik, or Rangdum.",
+        "distance": "approx. 230 km (to Kargil) / approx. 360 km (to Rangdum)",
+        "altitude": "approx. 2,676 m (Kargil) / approx. 4,031 m (Rangdum)",
+        "duration": "approx. 6–9 hrs"
+      },
+      {
+        "day": 2,
+        "title": "Kargil / Rangdum to Padum via Pensi La (approx. 4,400 m) & Drang Drung Glacier",
+        "description": "Climb from Rangdum past the twin alpine lakes of Statso and Langtso to Pensi La (approx. 4,400 m). Pause at the viewpoint overlooking the massive Drang Drung Glacier, source of the Stod (Doda) River, and descend through Abran, Akshow, and Sani Monastery into Padum.",
+        "distance": "approx. 100–230 km",
+        "altitude": "approx. 4,400 m max (Pensi La) → approx. 3,657 m (Padum)",
+        "duration": "approx. 5–8 hrs"
+      }
+    ],
+    "images": [
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "/gurev-4.jpg"
+    ],
+    "isFeatured": false,
+    "isActive": true
+  },
+  {
+    "id": "route-10-leh-lamayuru-sham",
+    "_id": "route-10-leh-lamayuru-sham",
+    "title": "Leh to Lamayuru & Sham Valley",
+    "slug": "leh-to-lamayuru-sham-valley",
+    "category": "offbeat",
+    "from_location": "Leh",
+    "to_location": "Lamayuru & Sham Valley",
+    "approx_distance": "approx. 125 km (one-way to Lamayuru)",
+    "approx_duration": "approx. 3–4 hrs (1–2 day loop)",
+    "approx_cost": "approx. ₹5,500–9,500 (day excursion or overnight Sham circuit)",
+    "mode": "Car / Bike / 4x4",
+    "key_passes": [
+      { "name": "Lamayuru Ridge", "altitude": "approx. 3,510 m" }
+    ],
+    "permits_required": false,
+    "permit_details": {
+      "indian": "No permit required for the Leh–Sham Valley–Alchi–Likir–Lamayuru loop (note: extending north to the Dah-Hanu / Aryan Valley sector requires EDF).",
+      "foreigner": "No Protected Area Permit (PAP) required for the standard Sham Valley and Lamayuru road corridor."
+    },
+    "best_season": "Year-round road access",
+    "highlights": [
+      "Lamayuru Monastery & Moonland — 11th-century Drikung Kagyu gompa amid surreal eroded clay formations",
+      "Alchi Choskor — 10th/11th-century Kashmiri-style Buddhist frescoes on the banks of the Indus",
+      "Sangam — Dramatic confluence of the emerald Indus and silty Zanskar rivers at Nimmu",
+      "Magnetic Hill, Gurudwara Pathar Sahib & Basgo Fort Ruins",
+      "Likir Monastery — 23-metre gilded Maitreya Buddha statue & traditional pottery village"
+    ],
+    "itinerary_summary": "The **Leh to Lamayuru & Sham Valley** circuit spans **approx. 125 km** (**approx. 3–4 hrs** one-way to Lamayuru) along smooth all-weather highways descending slightly lower than Leh in elevation (approx. 3,100–3,510 m). Requiring **no permit** and offering **year-round road access**, this route is ideal for Day 2–3 acclimatisation before tackling high passes above 5,000 m.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Leh to Lamayuru via Gurudwara Pathar Sahib, Magnetic Hill, Sangam, Basgo & Alchi",
+        "description": "Drive west from Leh along the Indus River. Stop at Gurudwara Pathar Sahib, experience the optical illusion at Magnetic Hill, and view the confluence of the Indus and Zanskar rivers at Sangam (Nimmu). Continue to the mud-brick ruins of Basgo Fort, explore the ancient murals of Alchi Monastery across the Saspol bridge, and ascend the hairpin loops to Lamayuru Moonland (approx. 125 km from Leh).",
+        "distance": "approx. 125 km (one-way) / approx. 250 km round trip",
+        "altitude": "approx. 3,100 m (Alchi) – approx. 3,510 m (Lamayuru)",
+        "duration": "approx. 3–4 hrs drive (full-day sightseeing)"
+      }
+    ],
+    "images": [
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "/gurev-4.jpg",
+      "https://images.pexels.com/photos/2835436/pexels-photo-2835436.jpeg?auto=compress&cs=tinysrgb&w=1600"
+    ],
+    "isFeatured": false,
+    "isActive": true
+  },
+  {
+    "id": "route-11-leh-local-sightseeing",
+    "_id": "route-11-leh-local-sightseeing",
+    "title": "Leh Local Sightseeing",
+    "slug": "leh-local-sightseeing",
+    "category": "offbeat",
+    "from_location": "Leh",
+    "to_location": "Leh & Indus Valley Monasteries",
+    "approx_distance": "approx. 50–90 km local loop",
+    "approx_duration": "approx. 4–6 hrs (1–2 days)",
+    "approx_cost": "approx. ₹3,500–6,500 (local sightseeing cab)",
+    "mode": "Car / Bike",
+    "key_passes": [
+      { "name": "Shanti Stupa & Leh Palace Ridge", "altitude": "approx. 3,500–3,609 m" }
+    ],
+    "permits_required": false,
+    "permit_details": {
+      "indian": "No permit required for Leh town landmarks and the eastern Indus Valley monastery circuit (Spituk, Shey, Thiksey, Hemis).",
+      "foreigner": "No Protected Area Permit (PAP) required for Leh local sightseeing and monastery circuit."
+    },
+    "best_season": "Year-round",
+    "highlights": [
+      "Leh Palace — 9-storey 17th-century royal palace built by King Sengge Namgyal overlooking Old Leh",
+      "Shanti Stupa — White-domed Japanese Peace Pagoda at Changspa with panoramic Stok Kangri views",
+      "Spituk Monastery & Hall of Fame — Hilltop Gelugpa gompa overlooking Leh runway & museum",
+      "Shey Palace & Thiksey Monastery — 12-storey Potala-style complex with a 15-metre Maitreya Buddha",
+      "Hemis Monastery — Wealthiest and largest Drukpa Kagyu monastery in Ladakh (approx. 45 km from Leh)"
+    ],
+    "itinerary_summary": "The **Leh Local Sightseeing & Indus Monastery Circuit** requires **no permit** and is the essential **acclimatisation itinerary** during your first 2 days in Leh (approx. 3,500 m). Covering **Leh Palace**, **Shanti Stupa**, **Spituk**, **Shey**, **Thiksey**, and **Hemis**, this gentle circuit lets you immerse in Ladakhi heritage while your body adapts before crossing passes above 5,000 m.",
+    "itinerary": [
+      {
+        "day": 1,
+        "title": "Acclimatisation & Leh Town Heritage (Leh Palace, Shanti Stupa & Spituk)",
+        "description": "Spend the morning resting and hydrating at your hotel in Leh (approx. 3,500 m). In the late afternoon, take a gentle drive to Spituk Monastery and the Hall of Fame museum, followed by Old Leh Town, the 9-storey Leh Palace, and sunset views from Shanti Stupa.",
+        "distance": "approx. 25 km local circuit",
+        "altitude": "approx. 3,500–3,609 m",
+        "duration": "approx. 3–4 hrs"
+      },
+      {
+        "day": 2,
+        "title": "Eastern Indus Monastery Circuit (Shey, Thiksey & Hemis)",
+        "description": "Attend the early morning prayer chanting at the 12-storey Thiksey Monastery (approx. 19 km from Leh). Visit the ancient royal capital at Shey Palace with its copper-gilt Shakyamuni Buddha, cross the Indus to Hemis Monastery (approx. 45 km from Leh) nestled in a quiet gorge, and optionally visit Stok Palace Museum on the return to Leh.",
+        "distance": "approx. 90 km round trip",
+        "altitude": "approx. 3,500–3,636 m",
+        "duration": "approx. 5–6 hrs"
+      }
+    ],
+    "images": [
+      "https://images.squarespace-cdn.com/content/v1/64d82289391a252015f03974/c1174e88-47e1-4aff-8e31-c94130c9a0ce/AA+suran+katori+sar.jpg",
+      "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "/gurev-4.jpg"
+    ],
+    "isFeatured": false,
+    "isActive": true
+  }
+]
+

@@ -7,7 +7,7 @@ const enquirySchema = new mongoose.Schema({
   enquiryType: { 
     type: String, 
     required: true,
-    enum: ['package', 'trek', 'activity', 'rental', 'hotel', 'general']
+    enum: ['package', 'trek', 'activity', 'rental', 'hotel', 'route', 'general']
   },
   relatedItem: {
     type: mongoose.Schema.Types.ObjectId,

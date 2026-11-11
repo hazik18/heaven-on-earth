@@ -9,6 +9,7 @@ const navItems = [
   { to: '/admin/houseboats', icon: 'sailing', label: 'Houseboats' },
   { to: '/admin/packages', icon: 'card_travel', label: 'Packages' },
   { to: '/admin/treks', icon: 'terrain', label: 'Treks' },
+  { to: '/admin/routes', icon: 'alt_route', label: 'Route Catalogue' },
   { to: '/admin/activities', icon: 'sports', label: 'Activities' },
   { to: '/admin/articles', icon: 'article', label: 'Articles' },
   { to: '/admin/books', icon: 'menu_book', label: 'Books' },

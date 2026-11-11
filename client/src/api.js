@@ -126,12 +126,21 @@ const api = {
   adminDeleteArticle: (id) => fetch(`${API_BASE}/articles/admin/${id}`, { method: 'DELETE', headers: getHeaders() }).then(handleResponse),
 
   // Books
-  getBooks: (params = '') => fetch(`${API_BASE}/books${params ? '?' + params : ''}`, { headers: getHeaders() }).then(handleResponse),
+  getBooks: (params = '') => fetch(`${API_BASE}/books${params ? '?' + params : ''}`).then(handleResponse),
   getBook: (slug) => fetch(`${API_BASE}/books/${slug}`, { headers: getHeaders() }).then(handleResponse),
   adminGetBooks: () => fetch(`${API_BASE}/books/admin/all`, { headers: getHeaders() }).then(handleResponse),
   adminCreateBook: (body) => fetch(`${API_BASE}/books/admin/create`, { method: 'POST', headers: getHeaders(), body: JSON.stringify(body) }).then(handleResponse),
   adminUpdateBook: (id, body) => fetch(`${API_BASE}/books/admin/${id}`, { method: 'PUT', headers: getHeaders(), body: JSON.stringify(body) }).then(handleResponse),
   adminDeleteBook: (id) => fetch(`${API_BASE}/books/admin/${id}`, { method: 'DELETE', headers: getHeaders() }).then(handleResponse),
+
+  // Ladakh Route Catalogue
+  getRoutes: (params = '') => fetch(`${API_BASE}/routes${params ? '?' + params : ''}`, { headers: getHeaders() }).then(handleResponse),
+  getRoute: (slug) => fetch(`${API_BASE}/routes/${slug}`, { headers: getHeaders() }).then(handleResponse),
+  adminGetRoutes: () => fetch(`${API_BASE}/routes/admin/all`, { headers: getHeaders() }).then(handleResponse),
+  adminCreateRoute: (body) => fetch(`${API_BASE}/routes/admin/create`, { method: 'POST', headers: getHeaders(), body: JSON.stringify(body) }).then(handleResponse),
+  adminUpdateRoute: (id, body) => fetch(`${API_BASE}/routes/admin/${id}`, { method: 'PUT', headers: getHeaders(), body: JSON.stringify(body) }).then(handleResponse),
+  adminDeleteRoute: (id) => fetch(`${API_BASE}/routes/admin/${id}`, { method: 'DELETE', headers: getHeaders() }).then(handleResponse),
+  adminSeedRoutes: () => fetch(`${API_BASE}/routes/admin/seed`, { method: 'POST', headers: getHeaders() }).then(handleResponse),
 
   // Site Settings (WhatsApp + contact info shown to all visitors)
   getSettings: () => fetch(`${API_BASE}/settings`, { headers: getHeaders() }).then(handleResponse),

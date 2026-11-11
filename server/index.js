@@ -36,6 +36,7 @@ app.use('/api/homestays', require('./routes/homestays'));
 app.use('/api/houseboats', require('./routes/houseboats'));
 app.use('/api/articles', require('./routes/articles'));
 app.use('/api/books', require('./routes/books'));
+app.use('/api/routes', require('./routes/routes'));
 app.use('/api/settings', require('./routes/settings'));
 
 // Health check
