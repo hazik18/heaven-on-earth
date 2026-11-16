@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
-const { protect } = require('../middleware/auth');
+const { protect, isDevAuthBypass } = require('../middleware/auth');
 const { authRateLimiter } = require('../middleware/rateLimit');
 
 const generateToken = (id) => {
@@ -50,6 +50,18 @@ router.post('/login', authRateLimiter, [
   }
   try {
     const { email, password } = req.body;
+
+    if (isDevAuthBypass()) {
+      console.warn('⚠️  DEV_AUTH_BYPASS active: logging in as mock Dev Admin');
+      return res.json({
+        _id: 'mock-admin-id',
+        name: 'Dev Admin',
+        email: email || 'admin@kashmirtravels.com',
+        role: 'admin',
+        token: generateToken('mock-admin-id')
+      });
+    }
+
     const user = await User.findOne({ email });
     if (user && (await user.matchPassword(password))) {
       res.json({
@@ -70,6 +82,9 @@ router.post('/login', authRateLimiter, [
 // GET /api/auth/me
 router.get('/me', protect, async (req, res) => {
   try {
+    if (isDevAuthBypass() && req.user?._id === 'mock-admin-id') {
+      return res.json(req.user);
+    }
     const user = await User.findById(req.user._id).select('-password');
     res.json(user);
   } catch (error) {
