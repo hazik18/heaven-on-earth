@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import api from '../api';
-import mockRoutes from '../data/routes.mock.json';
 import FilterBar from '../components/FilterBar';
 import ListingCard from '../components/ListingCard';
 
@@ -62,13 +61,9 @@ export default function LadakhRoutes() {
     setLoading(true);
     try {
       const data = await api.getRoutes();
-      if (Array.isArray(data) && data.length > 0 && !String(data[0]._id || data[0].id || '').startsWith('route-')) {
-        setRoutes(data);
-      } else {
-        setRoutes(mockRoutes);
-      }
+      setRoutes(Array.isArray(data) ? data : []);
     } catch {
-      setRoutes(mockRoutes);
+      setRoutes([]);
     } finally {
       setLoading(false);
     }

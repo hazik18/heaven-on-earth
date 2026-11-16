@@ -1,18 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const { protect, adminOnly } = require('../middleware/auth');
 const Settings = require('../models/Settings');
 
 // GET /api/settings - public, used by all visitors
 router.get('/', async (req, res) => {
   try {
-    if (mongoose.connection.readyState !== 1) {
-      return res.json({
-        whatsapp: { phone: '', template: '' },
-        contact: { contactPhone: '', contactEmail: '' },
-      });
-    }
     const doc = await Settings.getSingleton();
     res.json({
       whatsapp: {

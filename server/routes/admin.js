@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const { protect, adminOnly } = require('../middleware/auth');
 const User = require('../models/User');
 const Destination = require('../models/Destination');
@@ -9,28 +8,6 @@ const Booking = require('../models/Booking');
 
 // All admin routes require auth + admin role
 router.use(protect, adminOnly);
-
-// If MongoDB is not connected locally, return empty lists/stats immediately instead of buffering for 10s
-router.use((req, res, next) => {
-  if (mongoose.connection.readyState !== 1) {
-    if (req.path === '/dashboard') {
-      return res.json({
-        totalBookings: 0,
-        activeUsers: 0,
-        totalHotels: 0,
-        totalDestinations: 0,
-        totalRevenue: 0,
-        recentBookings: [],
-        statusCounts: []
-      });
-    }
-    if (req.method === 'GET') {
-      return res.json([]);
-    }
-    return res.status(200).json({ message: 'Saved in offline dev mode' });
-  }
-  next();
-});
 
 // GET /api/admin/dashboard
 router.get('/dashboard', async (req, res) => {

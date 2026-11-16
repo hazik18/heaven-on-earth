@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import api from '../api';
-import mockRoutes from '../data/routes.mock.json';
 import { buildWhatsAppUrl, buildEmailUrl } from '../utils/whatsapp';
 import { DetailPageSkeleton } from '../components/Skeleton';
 import InteractiveRouteMap from '../components/InteractiveRouteMap';
@@ -60,6 +59,7 @@ function splitHighlight(item) {
 export default function LadakhRouteDetail() {
   const { slug } = useParams();
   const [route, setRoute] = useState(null);
+  const [relatedRoutes, setRelatedRoutes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [openDayIdx, setOpenDayIdx] = useState(0);
@@ -86,19 +86,21 @@ export default function LadakhRouteDetail() {
     try {
       const data = await api.getRoute(slug);
       if (data && data.slug) {
-        const mockMatch = mockRoutes.find((r) => r.slug === slug);
-        if (mockMatch && String(data._id || data.id || '').startsWith('route-')) {
-          setRoute(mockMatch);
-        } else {
-          setRoute(data);
+        setRoute(data);
+        try {
+          const sameCategory = await api.getRoutes({ category: data.category });
+          const list = Array.isArray(sameCategory) ? sameCategory : [];
+          setRelatedRoutes(list.filter((r) => r.slug !== data.slug).slice(0, 3));
+        } catch {
+          setRelatedRoutes([]);
         }
       } else {
-        const fallback = mockRoutes.find((r) => r.slug === slug) || null;
-        setRoute(fallback);
+        setRoute(null);
+        setRelatedRoutes([]);
       }
     } catch {
-      const fallback = mockRoutes.find((r) => r.slug === slug) || null;
-      setRoute(fallback);
+      setRoute(null);
+      setRelatedRoutes([]);
     } finally {
       setLoading(false);
     }
@@ -153,10 +155,6 @@ export default function LadakhRouteDetail() {
       : [
           'https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1600'
         ];
-
-  const relatedRoutes = mockRoutes
-    .filter((r) => r.slug !== route.slug && r.category === route.category)
-    .slice(0, 3);
 
   return (
     <div className="min-h-screen bg-[#f7f9fb] text-slate-900 page-enter">

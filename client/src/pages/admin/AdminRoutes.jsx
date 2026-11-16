@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import api from '../../api';
-import mockRoutes from '../../data/routes.mock.json';
 import DeleteConfirmModal from '../../components/admin/DeleteConfirmModal';
 
 const STEPS = [
@@ -93,9 +92,7 @@ function validateStep(step, form) {
 
 export default function AdminRoutes() {
   const [routes, setRoutes] = useState([]);
-  const [usingMockFallback, setUsingMockFallback] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [seeding, setSeeding] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState(null);
   const [form, setForm] = useState(emptyForm);
@@ -114,33 +111,9 @@ export default function AdminRoutes() {
     setLoading(true);
     api
       .adminGetRoutes()
-      .then((data) => {
-        if (Array.isArray(data) && data.length > 0 && !String(data[0]._id || data[0].id || '').startsWith('route-')) {
-          setRoutes(data);
-          setUsingMockFallback(false);
-        } else {
-          setRoutes(mockRoutes);
-          setUsingMockFallback(true);
-        }
-      })
-      .catch(() => {
-        setRoutes(mockRoutes);
-        setUsingMockFallback(true);
-      })
+      .then((data) => setRoutes(Array.isArray(data) ? data : []))
+      .catch(() => setRoutes([]))
       .finally(() => setLoading(false));
-  };
-
-  const handleSeedFromMock = async () => {
-    setSeeding(true);
-    try {
-      const res = await api.adminSeedRoutes();
-      alert(res.message || 'Successfully seeded Ladakh routes into database!');
-      load();
-    } catch (err) {
-      alert(err.message || 'Failed to seed routes into database');
-    } finally {
-      setSeeding(false);
-    }
   };
 
   const openCreate = () => {
@@ -383,17 +356,6 @@ export default function AdminRoutes() {
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
-            onClick={handleSeedFromMock}
-            disabled={seeding}
-            className="bg-slate-800 hover:bg-slate-900 disabled:opacity-50 text-white px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 shadow-sm"
-          >
-            <span className="material-icons text-sm">
-              {seeding ? 'sync' : 'cloud_download'}
-            </span>
-            {seeding ? 'Seeding Routes...' : 'Seed from Mock Data'}
-          </button>
-          <button
-            type="button"
             onClick={openCreate}
             className="bg-[#FF8C00] hover:bg-[#E67E00] text-white px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 shadow-sm"
           >
@@ -401,31 +363,6 @@ export default function AdminRoutes() {
           </button>
         </div>
       </div>
-
-      {/* Mock Data Notice Banner if DB is not yet seeded */}
-      {usingMockFallback && (
-        <div className="mb-6 bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-start gap-3">
-            <span className="material-icons text-amber-600 mt-0.5">info</span>
-            <div>
-              <p className="text-sm font-bold text-slate-800">
-                Previewing Phase 1 Mock Catalogue (`routes.mock.json`)
-              </p>
-              <p className="text-xs text-slate-600">
-                Click <strong>"Seed from Mock Data"</strong> to populate all 11 Ladakh routes into the live MongoDB collection for production management.
-              </p>
-            </div>
-          </div>
-          <button
-            type="button"
-            onClick={handleSeedFromMock}
-            disabled={seeding}
-            className="shrink-0 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider"
-          >
-            {seeding ? 'Seeding...' : 'Seed 11 Routes Now'}
-          </button>
-        </div>
-      )}
 
       {/* Category Filter Pills */}
       <div className="flex flex-wrap gap-2 mb-6">
@@ -1051,7 +988,7 @@ export default function AdminRoutes() {
       ) : visibleRoutes.length === 0 ? (
         <div className="text-center py-20 text-slate-500">
           <span className="material-icons text-5xl mb-3 block opacity-30">alt_route</span>
-          No routes found. Click "Add Route" or "Seed from Mock Data".
+          No routes found. Click "Add Route" to create one.
         </div>
       ) : (
         <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">

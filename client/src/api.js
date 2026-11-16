@@ -140,7 +140,6 @@ const api = {
   adminCreateRoute: (body) => fetch(`${API_BASE}/routes/admin/create`, { method: 'POST', headers: getHeaders(), body: JSON.stringify(body) }).then(handleResponse),
   adminUpdateRoute: (id, body) => fetch(`${API_BASE}/routes/admin/${id}`, { method: 'PUT', headers: getHeaders(), body: JSON.stringify(body) }).then(handleResponse),
   adminDeleteRoute: (id) => fetch(`${API_BASE}/routes/admin/${id}`, { method: 'DELETE', headers: getHeaders() }).then(handleResponse),
-  adminSeedRoutes: () => fetch(`${API_BASE}/routes/admin/seed`, { method: 'POST', headers: getHeaders() }).then(handleResponse),
 
   // Site Settings (WhatsApp + contact info shown to all visitors)
   getSettings: () => fetch(`${API_BASE}/settings`, { headers: getHeaders() }).then(handleResponse),
