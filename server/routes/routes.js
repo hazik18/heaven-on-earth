@@ -7,7 +7,9 @@ const { escapeRegex } = require('../utils/regex');
 const Route = require('../models/Route');
 const { protect, admin } = require('../middleware/auth');
 
-const mockPath = path.resolve(__dirname, '../../client/src/data/routes.mock.json');
+const serverMockPath = path.resolve(__dirname, '../data/routes.mock.json');
+const clientMockPath = path.resolve(__dirname, '../../client/src/data/routes.mock.json');
+const mockPath = fs.existsSync(serverMockPath) ? serverMockPath : clientMockPath;
 let inMemoryRoutes = [];
 try {
   inMemoryRoutes = JSON.parse(fs.readFileSync(mockPath, 'utf-8'));
