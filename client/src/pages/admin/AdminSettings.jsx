@@ -54,7 +54,7 @@ export default function AdminSettings() {
     <div>
       <div className="mb-6 md:mb-8">
         <h1 className="text-2xl md:text-3xl text-slate-900 font-bold">Settings</h1>
-        <p className="text-slate-500 mt-1 text-sm">Manage WhatsApp enquiry settings</p>
+        <p className="text-slate-600 mt-1 text-sm">Manage WhatsApp enquiry settings</p>
       </div>
 
       <form onSubmit={handleSave} className="max-w-2xl space-y-8">
@@ -81,7 +81,7 @@ export default function AdminSettings() {
                 value={phone}
                 onChange={e => setPhone(e.target.value)}
                 placeholder="919876543210"
-                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
+                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-500 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all"
                 required
               />
             </div>
@@ -91,13 +91,13 @@ export default function AdminSettings() {
                 Message Template
               </label>
               <p className="text-xs text-slate-500 mb-2">
-                Use <code className="bg-slate-100 px-1.5 py-0.5 rounded text-green-600">{'{itemName}'}</code> as a placeholder — it will be replaced with the item name (hotel, trek, package, etc.)
+                Use <code className="bg-slate-100 px-1.5 py-0.5 rounded text-emerald-700">{'{itemName}'}</code> as a placeholder — it will be replaced with the item name (hotel, trek, package, etc.)
               </p>
               <textarea
                 value={template}
                 onChange={e => setTemplate(e.target.value)}
                 rows={8}
-                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all resize-none font-mono text-sm leading-relaxed"
+                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-500 focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all resize-none font-mono text-sm leading-relaxed"
                 required
               />
             </div>
@@ -108,7 +108,7 @@ export default function AdminSettings() {
         <div className="bg-slate-100/50 rounded-2xl p-4 md:p-8 border border-slate-300/50">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
-              <span className="material-icons text-blue-400">contact_phone</span>
+              <span className="material-icons text-blue-700">contact_phone</span>
             </div>
             <div>
               <h2 className="text-xl text-slate-900 font-bold">Contact Information</h2>
@@ -126,7 +126,7 @@ export default function AdminSettings() {
                 value={contactPhone}
                 onChange={e => setContactPhone(e.target.value)}
                 placeholder="+91 194 2501234"
-                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                 required
               />
             </div>
@@ -140,7 +140,7 @@ export default function AdminSettings() {
                 value={contactEmail}
                 onChange={e => setContactEmail(e.target.value)}
                 placeholder="info@kashmiroffbeat.com"
-                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-800 placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                 required
               />
             </div>
@@ -156,7 +156,7 @@ export default function AdminSettings() {
           <div className="bg-[#e5ddd5] rounded-xl p-4">
             <div className="bg-[#dcf8c6] rounded-lg px-4 py-3 max-w-md ml-auto shadow-sm">
               <p className="text-sm text-slate-800 whitespace-pre-wrap leading-relaxed">{previewMessage}</p>
-              <p className="text-[10px] text-slate-500 text-right mt-1">Now ✓✓</p>
+              <p className="text-xs text-slate-600 text-right mt-1">Now ✓✓</p>
             </div>
           </div>
         </div>
@@ -166,13 +166,13 @@ export default function AdminSettings() {
           <button
             type="submit"
             disabled={saving}
-            className="px-8 py-3 bg-green-600 hover:bg-green-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all duration-200 flex items-center gap-2"
+            className="px-8 py-3 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all duration-200 flex items-center gap-2"
           >
             <span className="material-icons text-lg">save</span>
             {saving ? 'Saving...' : 'Save Settings'}
           </button>
           {saved && (
-            <span className="flex items-center gap-1.5 text-green-600 font-medium text-sm animate-pulse">
+            <span className="flex items-center gap-1.5 text-emerald-700 font-medium text-sm animate-pulse">
               <span className="material-icons text-base">check_circle</span>
               Settings saved successfully!
             </span>

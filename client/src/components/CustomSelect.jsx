@@ -119,11 +119,11 @@ export default function CustomSelect({ value, onChange, options, placeholder = '
       >
         <span className="flex items-center gap-2 truncate">
           {icon && <span className="material-icons text-accent-gold text-[18px]">{icon}</span>}
-          <span className={`${variant === 'hero' ? (selected ? 'text-slate-900 font-bold' : 'text-slate-600') : (selected ? 'text-white' : 'text-slate-500')}`}>
+          <span className={`${variant === 'hero' ? (selected ? 'text-slate-900 font-bold' : 'text-slate-600') : (selected ? 'text-white' : 'text-slate-300')}`}>
             {selected ? selected.label : placeholder}
           </span>
         </span>
-        <span className={`material-icons text-[18px] text-slate-500 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>
+        <span className={`material-icons text-[18px] ${variant === 'hero' ? 'text-slate-500' : 'text-slate-300'} transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>
           expand_more
         </span>
       </button>

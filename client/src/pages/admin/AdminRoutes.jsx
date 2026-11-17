@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../../api';
+import useModalBehavior from '../../hooks/useModalBehavior';
 import DeleteConfirmModal from '../../components/admin/DeleteConfirmModal';
 
 const STEPS = [
@@ -45,13 +46,13 @@ const emptyForm = {
 };
 
 const inputCls = (err) =>
-  `w-full bg-white border rounded-lg px-4 py-2 text-sm text-slate-800 transition-colors outline-none ${
-    err ? 'border-red-400 focus:border-red-500' : 'border-slate-300 focus:border-[#FF8C00]'
+  `w-full bg-white border rounded-lg px-4 py-2.5 text-[15px] text-slate-900 transition-colors outline-none ${
+    err ? 'border-red-400 focus:border-red-500' : 'border-slate-300 focus:border-[#C2410C] focus:ring-2 focus:ring-orange-500/20'
   }`;
 
 const ErrMsg = ({ msg }) =>
   msg ? (
-    <p className="mt-1 text-xs text-red-500 flex items-center gap-1">
+    <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
       <span className="material-icons text-[14px]">error_outline</span>
       {msg}
     </p>
@@ -99,6 +100,7 @@ export default function AdminRoutes() {
   const [step, setStep] = useState(0);
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
+  useModalBehavior(showForm, () => setShowForm(false), saving);
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [dragOver, setDragOver] = useState(false);
   const [filterCat, setFilterCat] = useState('');
@@ -166,10 +168,13 @@ export default function AdminRoutes() {
   };
 
   const handleNext = () => {
-    const errs = validateStep(step, form);
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      return;
+    for (let sIdx = 0; sIdx < STEPS.length; sIdx++) {
+      const errs = validateStep(sIdx, form);
+      if (Object.keys(errs).length > 0) {
+        setErrors(errs);
+        setStep(sIdx);
+        return;
+      }
     }
     setErrors({});
     setStep((s) => s + 1);
@@ -181,11 +186,15 @@ export default function AdminRoutes() {
   };
 
   const handleSubmit = async (e) => {
+    if (saving) return;
     e.preventDefault();
-    const errs = validateStep(step, form);
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs);
-      return;
+    for (let sIdx = 0; sIdx < STEPS.length; sIdx++) {
+      const errs = validateStep(sIdx, form);
+      if (Object.keys(errs).length > 0) {
+        setErrors(errs);
+        setStep(sIdx);
+        return;
+      }
     }
     setSaving(true);
     const payload = {
@@ -346,10 +355,10 @@ export default function AdminRoutes() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-8">
         <div>
-          <h1 className="text-2xl md:text-3xl text-slate-800 font-bold">
+          <h1 className="text-2xl md:text-3xl text-slate-900 font-bold">
             Route Catalogue Manager
           </h1>
-          <p className="text-slate-500 mt-1 text-sm">
+          <p className="text-slate-600 mt-1 text-sm">
             Manage Ladakh highway approaches, high-altitude lake circuits, and offbeat passes
           </p>
         </div>
@@ -357,7 +366,7 @@ export default function AdminRoutes() {
           <button
             type="button"
             onClick={openCreate}
-            className="bg-[#FF8C00] hover:bg-[#E67E00] text-white px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 shadow-sm"
+            className="bg-[#C2410C] hover:bg-[#9A3412] text-white px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 shadow-sm"
           >
             <span className="material-icons text-sm">add</span> Add Route
           </button>
@@ -387,8 +396,8 @@ export default function AdminRoutes() {
             onClick={() => setFilterCat(c.id)}
             className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
               filterCat === c.id
-                ? 'bg-[#FF8C00] text-white shadow-sm'
-                : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                ? 'bg-[#C2410C] text-white shadow-sm'
+                : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100/70'
             }`}
           >
             {c.label}
@@ -398,15 +407,21 @@ export default function AdminRoutes() {
 
       {/* Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white border border-slate-200 rounded-2xl shadow-xl w-full max-w-3xl my-8">
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-4 overflow-y-auto"
+          onClick={() => { if (!saving) setShowForm(false); }}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="bg-white border border-slate-200 rounded-2xl shadow-xl w-full max-w-6xl my-4 md:my-8" onClick={e => e.stopPropagation()}>
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-200">
+            <div className="flex items-center justify-between px-6 md:px-8 pt-6 pb-4 border-b border-slate-200">
               <h2 className="text-xl text-slate-900 font-bold">
                 {editing ? 'Edit Route Entry' : 'New Route Entry'}
               </h2>
               <button
                 type="button"
+                aria-label="Close modal"
                 onClick={() => setShowForm(false)}
                 className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors text-slate-500"
               >
@@ -415,13 +430,19 @@ export default function AdminRoutes() {
             </div>
 
             {/* Step Indicator */}
-            <div className="px-6 py-4 border-b border-slate-200">
-              <div className="flex items-center gap-0">
+            <div className="px-6 md:px-8 py-4 border-b border-slate-200 overflow-x-auto">
+              <div className="flex items-center gap-0 min-w-[440px]">
                 {STEPS.map((s, i) => (
                   <div key={s.id} className="flex items-center flex-1 last:flex-none">
                     <button
                       type="button"
                       onClick={() => {
+                        if (i > step) {
+                          for (let sIdx = step; sIdx < i; sIdx++) {
+                            const errs = validateStep(sIdx, form);
+                            if (Object.keys(errs).length > 0) { setErrors(errs); setStep(sIdx); return; }
+                          }
+                        }
                         setErrors({});
                         setStep(i);
                       }}
@@ -432,8 +453,8 @@ export default function AdminRoutes() {
                           i < step
                             ? 'bg-green-500 text-white'
                             : i === step
-                            ? 'bg-[#FF8C00] text-white ring-4 ring-[#FF8C00]/20'
-                            : 'bg-slate-200 text-slate-400'
+                            ? 'bg-[#C2410C] text-white ring-4 ring-[#FF8C00]/20'
+                            : 'bg-slate-200 text-slate-700'
                         }`}
                       >
                         {i < step ? (
@@ -443,11 +464,11 @@ export default function AdminRoutes() {
                         )}
                       </div>
                       <span
-                        className={`text-[10px] font-semibold whitespace-nowrap ${
+                        className={`text-xs font-semibold whitespace-nowrap ${
                           i === step
-                            ? 'text-[#FF8C00]'
+                            ? 'text-[#C2410C]'
                             : i < step
-                            ? 'text-green-500'
+                            ? 'text-emerald-700'
                             : 'text-slate-500'
                         }`}
                       >
@@ -467,14 +488,14 @@ export default function AdminRoutes() {
             </div>
 
             {/* Step Content */}
-            <div className="px-6 py-5 max-h-[55vh] overflow-y-auto">
+            <div className="px-6 md:px-8 py-6 max-h-[68vh] overflow-y-auto">
               {/* Step 0: Basic Info */}
               {step === 0 && (
                 <div className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                        Route Title <span className="text-red-500">*</span>
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                        Route Title <span className="text-red-600">*</span>
                       </label>
                       <input
                         value={form.title}
@@ -492,8 +513,8 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.title} />
                     </div>
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                        URL Slug <span className="text-red-500">*</span>
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                        URL Slug <span className="text-red-600">*</span>
                       </label>
                       <input
                         value={form.slug}
@@ -505,10 +526,10 @@ export default function AdminRoutes() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                        Category <span className="text-red-500">*</span>
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                        Category <span className="text-red-600">*</span>
                       </label>
                       <select
                         value={form.category}
@@ -521,8 +542,8 @@ export default function AdminRoutes() {
                       </select>
                     </div>
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                        From Location <span className="text-red-500">*</span>
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                        From Location <span className="text-red-600">*</span>
                       </label>
                       <input
                         value={form.from_location}
@@ -533,8 +554,8 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.from_location} />
                     </div>
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                        To Location <span className="text-red-500">*</span>
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                        To Location <span className="text-red-600">*</span>
                       </label>
                       <input
                         value={form.to_location}
@@ -547,8 +568,8 @@ export default function AdminRoutes() {
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                      Itinerary Summary (Markdown / HTML) <span className="text-red-500">*</span>
+                    <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                      Itinerary Summary (Markdown / HTML) <span className="text-red-600">*</span>
                     </label>
                     <textarea
                       rows={4}
@@ -567,10 +588,10 @@ export default function AdminRoutes() {
               {/* Step 1: Logistics & Passes */}
               {step === 1 && (
                 <div className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                        Approx. Distance <span className="text-red-500">*</span>
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                        Approx. Distance <span className="text-red-600">*</span>
                       </label>
                       <input
                         value={form.approx_distance}
@@ -583,8 +604,8 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.approx_distance} />
                     </div>
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                        Approx. Duration <span className="text-red-500">*</span>
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                        Approx. Duration <span className="text-red-600">*</span>
                       </label>
                       <input
                         value={form.approx_duration}
@@ -598,10 +619,10 @@ export default function AdminRoutes() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                        Travel Mode <span className="text-red-500">*</span>
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                        Travel Mode <span className="text-red-600">*</span>
                       </label>
                       <input
                         value={form.mode}
@@ -612,8 +633,8 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.mode} />
                     </div>
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
-                        Best Season <span className="text-red-500">*</span>
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                        Best Season <span className="text-red-600">*</span>
                       </label>
                       <input
                         value={form.best_season}
@@ -624,7 +645,7 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.best_season} />
                     </div>
                     <div>
-                      <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
+                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
                         Approx. Cost
                       </label>
                       <input
@@ -639,13 +660,13 @@ export default function AdminRoutes() {
                   {/* Key Passes */}
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase">
+                      <label className="text-[13px] font-bold text-slate-700 uppercase">
                         Key Passes (`name` & `altitude`)
                       </label>
                       <button
                         type="button"
                         onClick={addKeyPass}
-                        className="text-xs font-bold text-[#FF8C00] hover:underline flex items-center gap-1"
+                        className="text-xs font-bold text-[#C2410C] hover:underline flex items-center gap-1"
                       >
                         <span className="material-icons text-sm">add</span> Add Pass
                       </button>
@@ -669,7 +690,7 @@ export default function AdminRoutes() {
                             <button
                               type="button"
                               onClick={() => removeKeyPass(idx)}
-                              className="p-2 text-red-500 hover:bg-red-50 rounded-lg"
+                              className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
                             >
                               <span className="material-icons text-base">delete</span>
                             </button>
@@ -703,7 +724,7 @@ export default function AdminRoutes() {
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
+                    <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
                       Indian Tourist Permit Rules (EDF Notice)
                     </label>
                     <textarea
@@ -738,7 +759,7 @@ export default function AdminRoutes() {
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-slate-500 uppercase block mb-1">
+                    <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
                       Route Highlights (one per line)
                     </label>
                     <textarea
@@ -774,14 +795,14 @@ export default function AdminRoutes() {
                       className="bg-slate-100/60 border border-slate-300 rounded-xl p-4"
                     >
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs font-bold text-[#FF8C00] bg-orange-100 px-2.5 py-1 rounded-full">
+                        <span className="text-xs font-bold text-[#C2410C] bg-orange-100 px-2.5 py-1 rounded-full">
                           Day {day.day}
                         </span>
                         {form.itinerary.length > 1 && (
                           <button
                             type="button"
                             onClick={() => removeItineraryDay(idx)}
-                            className="text-red-500 hover:text-red-600 text-xs flex items-center gap-1"
+                            className="text-red-600 hover:text-red-600 text-xs flex items-center gap-1"
                           >
                             <span className="material-icons text-[15px]">delete</span> Remove
                           </button>
@@ -801,7 +822,7 @@ export default function AdminRoutes() {
                           placeholder="Describe the day's route, stops, passes, and halts"
                           className={inputCls()}
                         />
-                        <div className="grid grid-cols-3 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                           <input
                             value={day.distance}
                             onChange={(e) => updateItineraryDay(idx, 'distance', e.target.value)}
@@ -850,7 +871,7 @@ export default function AdminRoutes() {
                     <button
                       type="button"
                       onClick={addImageUrl}
-                      className="shrink-0 bg-[#FF8C00] hover:bg-[#E67E00] text-white px-4 py-2 rounded-lg text-sm font-bold"
+                      className="shrink-0 bg-[#C2410C] hover:bg-[#9A3412] text-white px-4 py-2 rounded-lg text-sm font-bold"
                     >
                       Add URL
                     </button>
@@ -893,7 +914,7 @@ export default function AdminRoutes() {
                   </div>
 
                   {form.images.length > 0 && (
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div className="grid grid-cols-2 sm:grid-cols-1 sm:grid-cols-3 gap-3">
                       {form.images.map((img, i) => (
                         <div
                           key={i}
@@ -909,7 +930,7 @@ export default function AdminRoutes() {
                                   images: f.images.filter((_, idx) => idx !== i)
                                 }))
                               }
-                              className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1"
+                              className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1"
                             >
                               <span className="material-icons text-[14px]">delete</span> Remove
                             </button>
@@ -923,7 +944,7 @@ export default function AdminRoutes() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 border-t border-slate-200 bg-slate-50 rounded-b-2xl">
+            <div className="px-6 md:px-8 py-4 border-t border-slate-200 bg-slate-50 rounded-b-2xl">
               {errors.submit && (
                 <div className="mb-3 flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 px-4 py-2.5 rounded-lg text-sm">
                   <span className="material-icons text-[18px]">error_outline</span>
@@ -951,7 +972,7 @@ export default function AdminRoutes() {
                     type="button"
                     onClick={handleSubmit}
                     disabled={saving}
-                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-green-600 hover:bg-green-500 disabled:opacity-50 text-white font-bold text-sm transition-colors"
+                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white font-bold text-sm transition-colors"
                   >
                     {saving ? (
                       <>
@@ -971,7 +992,7 @@ export default function AdminRoutes() {
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#FF8C00] hover:bg-[#E67E00] text-white font-bold text-sm transition-colors shadow-sm"
+                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#C2410C] hover:bg-[#9A3412] text-white font-bold text-sm transition-colors shadow-sm"
                   >
                     Next <span className="material-icons text-[18px]">arrow_forward</span>
                   </button>
@@ -1014,7 +1035,7 @@ export default function AdminRoutes() {
                 {visibleRoutes.map((route) => (
                   <tr
                     key={route._id || route.id || route.slug}
-                    className="border-b border-slate-200/60 hover:bg-slate-50 transition-colors"
+                    className="border-b border-slate-200 hover:bg-slate-100/70 transition-colors"
                   >
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
@@ -1028,14 +1049,14 @@ export default function AdminRoutes() {
                         />
                         <div>
                           <p className="font-bold text-slate-800">{route.title}</p>
-                          <p className="text-xs text-slate-500">
+                          <p className="text-[13px] text-slate-600">
                             {route.from_location} → {route.to_location} · {route.best_season}
                           </p>
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-orange-50 text-[#FF8C00]">
+                      <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-orange-100 text-[#9A3412] border border-orange-300">
                         {CATEGORY_LABELS[route.category] || route.category}
                       </span>
                     </td>
@@ -1065,7 +1086,7 @@ export default function AdminRoutes() {
                       <button
                         type="button"
                         onClick={() => openEdit(route)}
-                        className="text-[#FF8C00] hover:text-[#FF8C00]/80 mr-3 transition-colors"
+                        className="text-[#C2410C] hover:text-[#9A3412] mr-3 transition-colors"
                         title="Edit Route"
                       >
                         <span className="material-icons text-[18px]">edit</span>
@@ -1073,7 +1094,7 @@ export default function AdminRoutes() {
                       <button
                         type="button"
                         onClick={() => setDeleteTarget(route)}
-                        className="text-red-500 hover:text-red-400 transition-colors"
+                        className="text-red-600 hover:text-red-600 transition-colors"
                         title="Delete Route"
                       >
                         <span className="material-icons text-[18px]">delete</span>
