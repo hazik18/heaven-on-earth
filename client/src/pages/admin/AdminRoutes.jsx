@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import api from '../../api';
 import useModalBehavior from '../../hooks/useModalBehavior';
 import DeleteConfirmModal from '../../components/admin/DeleteConfirmModal';
+import AdminCard from '../../components/admin/AdminCard';
+import AdminStepModal from '../../components/admin/AdminStepModal';
 
 const STEPS = [
   { id: 0, label: 'Basic Info', icon: 'alt_route' },
@@ -46,13 +48,13 @@ const emptyForm = {
 };
 
 const inputCls = (err) =>
-  `w-full bg-white border rounded-lg px-4 py-2.5 text-[15px] text-slate-900 transition-colors outline-none ${
-    err ? 'border-red-400 focus:border-red-500' : 'border-slate-300 focus:border-[#C2410C] focus:ring-2 focus:ring-orange-500/20'
+  `w-full bg-slate-950 border rounded-lg px-4 py-2.5 text-[15px] text-slate-100 transition-colors outline-none ${
+    err ? 'border-red-400 focus:border-red-500' : 'border-slate-700 focus:border-[#C2410C] focus:ring-2 focus:ring-orange-500/20'
   }`;
 
 const ErrMsg = ({ msg }) =>
   msg ? (
-    <p className="mt-1 text-xs text-red-600 flex items-center gap-1">
+    <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
       <span className="material-icons text-[14px]">error_outline</span>
       {msg}
     </p>
@@ -355,10 +357,10 @@ export default function AdminRoutes() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-8">
         <div>
-          <h1 className="text-2xl md:text-3xl text-slate-900 font-bold">
+          <h1 className="text-2xl md:text-3xl text-slate-100 font-bold">
             Route Catalogue Manager
           </h1>
-          <p className="text-slate-600 mt-1 text-sm">
+          <p className="text-slate-300 mt-1 text-sm">
             Manage Ladakh highway approaches, high-altitude lake circuits, and offbeat passes
           </p>
         </div>
@@ -397,7 +399,7 @@ export default function AdminRoutes() {
             className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
               filterCat === c.id
                 ? 'bg-[#C2410C] text-white shadow-sm'
-                : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100/70'
+                : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-700/50'
             }`}
           >
             {c.label}
@@ -406,96 +408,36 @@ export default function AdminRoutes() {
       </div>
 
       {/* Form Modal */}
-      {showForm && (
-        <div
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-4 overflow-y-auto"
-          onClick={() => { if (!saving) setShowForm(false); }}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="bg-white border border-slate-200 rounded-2xl shadow-xl w-full max-w-6xl my-4 md:my-8" onClick={e => e.stopPropagation()}>
-            {/* Modal Header */}
-            <div className="flex items-center justify-between px-6 md:px-8 pt-6 pb-4 border-b border-slate-200">
-              <h2 className="text-xl text-slate-900 font-bold">
-                {editing ? 'Edit Route Entry' : 'New Route Entry'}
-              </h2>
-              <button
-                type="button"
-                aria-label="Close modal"
-                onClick={() => setShowForm(false)}
-                className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors text-slate-500"
-              >
-                <span className="material-icons">close</span>
-              </button>
-            </div>
-
-            {/* Step Indicator */}
-            <div className="px-6 md:px-8 py-4 border-b border-slate-200 overflow-x-auto">
-              <div className="flex items-center gap-0 min-w-[440px]">
-                {STEPS.map((s, i) => (
-                  <div key={s.id} className="flex items-center flex-1 last:flex-none">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        if (i > step) {
-                          for (let sIdx = step; sIdx < i; sIdx++) {
-                            const errs = validateStep(sIdx, form);
-                            if (Object.keys(errs).length > 0) { setErrors(errs); setStep(sIdx); return; }
-                          }
-                        }
-                        setErrors({});
-                        setStep(i);
-                      }}
-                      className="flex flex-col items-center gap-1 group"
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                          i < step
-                            ? 'bg-green-500 text-white'
-                            : i === step
-                            ? 'bg-[#C2410C] text-white ring-4 ring-[#FF8C00]/20'
-                            : 'bg-slate-200 text-slate-700'
-                        }`}
-                      >
-                        {i < step ? (
-                          <span className="material-icons text-[16px]">check</span>
-                        ) : (
-                          i + 1
-                        )}
-                      </div>
-                      <span
-                        className={`text-xs font-semibold whitespace-nowrap ${
-                          i === step
-                            ? 'text-[#C2410C]'
-                            : i < step
-                            ? 'text-emerald-700'
-                            : 'text-slate-500'
-                        }`}
-                      >
-                        {s.label}
-                      </span>
-                    </button>
-                    {i < STEPS.length - 1 && (
-                      <div
-                        className={`flex-1 h-0.5 mx-2 mb-5 transition-colors ${
-                          i < step ? 'bg-green-500' : 'bg-slate-100'
-                        }`}
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Step Content */}
-            <div className="px-6 md:px-8 py-6 max-h-[68vh] overflow-y-auto">
+      <AdminStepModal
+        isOpen={showForm}
+        onClose={() => setShowForm(false)}
+        title={editing ? 'Edit Route Entry' : 'New Route Entry'}
+        subtitle={editing ? form.title : null}
+        steps={STEPS}
+        step={step}
+        onStepClick={(i) => {
+          if (i > step) {
+            for (let sIdx = step; sIdx < i; sIdx++) {
+              const errs = validateStep(sIdx, form);
+              if (Object.keys(errs).length > 0) { setErrors(errs); setStep(sIdx); return; }
+            }
+          }
+          setErrors({}); setStep(i);
+        }}
+        onBack={handleBack}
+        onNext={handleNext}
+        onSubmit={handleSubmit}
+        saving={saving}
+        submitError={errors.submit}
+        submitLabel={editing ? 'Update Route' : 'Create Route'}
+      >
               {/* Step 0: Basic Info */}
               {step === 0 && (
                 <div className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                        Route Title <span className="text-red-600">*</span>
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                        Route Title <span className="text-red-400">*</span>
                       </label>
                       <input
                         value={form.title}
@@ -513,8 +455,8 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.title} />
                     </div>
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                        URL Slug <span className="text-red-600">*</span>
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                        URL Slug <span className="text-red-400">*</span>
                       </label>
                       <input
                         value={form.slug}
@@ -526,10 +468,10 @@ export default function AdminRoutes() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                        Category <span className="text-red-600">*</span>
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                        Category <span className="text-red-400">*</span>
                       </label>
                       <select
                         value={form.category}
@@ -542,8 +484,8 @@ export default function AdminRoutes() {
                       </select>
                     </div>
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                        From Location <span className="text-red-600">*</span>
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                        From Location <span className="text-red-400">*</span>
                       </label>
                       <input
                         value={form.from_location}
@@ -554,8 +496,8 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.from_location} />
                     </div>
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                        To Location <span className="text-red-600">*</span>
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                        To Location <span className="text-red-400">*</span>
                       </label>
                       <input
                         value={form.to_location}
@@ -568,8 +510,8 @@ export default function AdminRoutes() {
                   </div>
 
                   <div>
-                    <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                      Itinerary Summary (Markdown / HTML) <span className="text-red-600">*</span>
+                    <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                      Itinerary Summary (Markdown / HTML) <span className="text-red-400">*</span>
                     </label>
                     <textarea
                       rows={4}
@@ -588,10 +530,10 @@ export default function AdminRoutes() {
               {/* Step 1: Logistics & Passes */}
               {step === 1 && (
                 <div className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                        Approx. Distance <span className="text-red-600">*</span>
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                        Approx. Distance <span className="text-red-400">*</span>
                       </label>
                       <input
                         value={form.approx_distance}
@@ -604,8 +546,8 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.approx_distance} />
                     </div>
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                        Approx. Duration <span className="text-red-600">*</span>
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                        Approx. Duration <span className="text-red-400">*</span>
                       </label>
                       <input
                         value={form.approx_duration}
@@ -619,10 +561,10 @@ export default function AdminRoutes() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                        Travel Mode <span className="text-red-600">*</span>
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                        Travel Mode <span className="text-red-400">*</span>
                       </label>
                       <input
                         value={form.mode}
@@ -633,8 +575,8 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.mode} />
                     </div>
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
-                        Best Season <span className="text-red-600">*</span>
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
+                        Best Season <span className="text-red-400">*</span>
                       </label>
                       <input
                         value={form.best_season}
@@ -645,7 +587,7 @@ export default function AdminRoutes() {
                       <ErrMsg msg={errors.best_season} />
                     </div>
                     <div>
-                      <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                      <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
                         Approx. Cost
                       </label>
                       <input
@@ -660,7 +602,7 @@ export default function AdminRoutes() {
                   {/* Key Passes */}
                   <div>
                     <div className="flex items-center justify-between mb-2">
-                      <label className="text-[13px] font-bold text-slate-700 uppercase">
+                      <label className="text-[13px] font-bold text-slate-200 uppercase">
                         Key Passes (`name` & `altitude`)
                       </label>
                       <button
@@ -673,7 +615,7 @@ export default function AdminRoutes() {
                     </div>
                     <div className="space-y-2">
                       {form.key_passes.map((pass, idx) => (
-                        <div key={idx} className="flex items-center gap-3">
+                        <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
                           <input
                             value={pass.name}
                             onChange={(e) => updateKeyPass(idx, 'name', e.target.value)}
@@ -690,7 +632,7 @@ export default function AdminRoutes() {
                             <button
                               type="button"
                               onClick={() => removeKeyPass(idx)}
-                              className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                              className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg"
                             >
                               <span className="material-icons text-base">delete</span>
                             </button>
@@ -705,7 +647,7 @@ export default function AdminRoutes() {
               {/* Step 2: Permits & Highlights */}
               {step === 2 && (
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3 p-3.5 bg-orange-50 border border-orange-200 rounded-xl">
+                  <div className="flex items-center gap-3 p-3.5 bg-orange-500/10 border border-orange-500/30 rounded-xl">
                     <input
                       type="checkbox"
                       id="permits_required"
@@ -717,14 +659,14 @@ export default function AdminRoutes() {
                     />
                     <label
                       htmlFor="permits_required"
-                      className="text-sm font-bold text-slate-800 cursor-pointer"
+                      className="text-sm font-bold text-slate-100 cursor-pointer"
                     >
                       Permits Required (EDF for Indian Tourists / PAP for Foreign Nationals)
                     </label>
                   </div>
 
                   <div>
-                    <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                    <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
                       Indian Tourist Permit Rules (EDF Notice)
                     </label>
                     <textarea
@@ -741,8 +683,7 @@ export default function AdminRoutes() {
                   </div>
 
                   <div>
-                    <label className="text
-                    -xs font-bold text-slate-500 uppercase block mb-1">
+                    <label className="text-xs font-bold text-slate-300 uppercase block mb-1">
                       Foreign National Permit Rules (PAP Notice)
                     </label>
                     <textarea
@@ -759,7 +700,7 @@ export default function AdminRoutes() {
                   </div>
 
                   <div>
-                    <label className="text-[13px] font-bold text-slate-700 uppercase block mb-1">
+                    <label className="text-[13px] font-bold text-slate-200 uppercase block mb-1">
                       Route Highlights (one per line)
                     </label>
                     <textarea
@@ -771,7 +712,7 @@ export default function AdminRoutes() {
                     />
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 bg-slate-100 rounded-lg">
+                  <div className="flex items-center gap-3 p-3 bg-slate-800 rounded-lg">
                     <input
                       type="checkbox"
                       id="isFeatured"
@@ -779,7 +720,7 @@ export default function AdminRoutes() {
                       onChange={(e) => setForm((f) => ({ ...f, isFeatured: e.target.checked }))}
                       className="w-4 h-4 accent-[#FF8C00]"
                     />
-                    <label htmlFor="isFeatured" className="text-sm text-slate-700 cursor-pointer">
+                    <label htmlFor="isFeatured" className="text-sm text-slate-200 cursor-pointer">
                       Mark as Featured Route
                     </label>
                   </div>
@@ -792,17 +733,17 @@ export default function AdminRoutes() {
                   {form.itinerary.map((day, idx) => (
                     <div
                       key={idx}
-                      className="bg-slate-100/60 border border-slate-300 rounded-xl p-4"
+                      className="bg-slate-800/60 border border-slate-700 rounded-xl p-4"
                     >
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-xs font-bold text-[#C2410C] bg-orange-100 px-2.5 py-1 rounded-full">
+                        <span className="text-xs font-bold text-[#C2410C] bg-orange-500/15 px-2.5 py-1 rounded-full">
                           Day {day.day}
                         </span>
                         {form.itinerary.length > 1 && (
                           <button
                             type="button"
                             onClick={() => removeItineraryDay(idx)}
-                            className="text-red-600 hover:text-red-600 text-xs flex items-center gap-1"
+                            className="text-red-400 hover:text-red-400 text-xs flex items-center gap-1"
                           >
                             <span className="material-icons text-[15px]">delete</span> Remove
                           </button>
@@ -848,7 +789,7 @@ export default function AdminRoutes() {
                   <button
                     type="button"
                     onClick={addItineraryDay}
-                    className="w-full bg-slate-100 hover:bg-slate-200 border border-dashed border-slate-300 text-slate-600 px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-colors"
+                    className="w-full bg-slate-800 hover:bg-slate-700 border border-dashed border-slate-700 text-slate-300 px-4 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-colors"
                   >
                     <span className="material-icons text-[18px]">add</span> Add Itinerary Day
                   </button>
@@ -888,20 +829,20 @@ export default function AdminRoutes() {
                       setDragOver(true);
                     }}
                     onDragLeave={() => setDragOver(false)}
-                    className={`border-2 border-dashed rounded-xl p-6 text-center transition-colors ${
+                    className={`border-2 border-dashed rounded-xl p-4 sm:p-6 text-center transition-colors ${
                       dragOver
                         ? 'border-[#FF8C00] bg-[#FF8C00]/5'
-                        : 'border-slate-300 bg-slate-50 hover:border-slate-400'
+                        : 'border-slate-700 bg-slate-950/60 hover:border-slate-400'
                     }`}
                   >
-                    <span className="material-icons text-4xl text-slate-400 mb-2 block">
+                    <span className="material-icons text-4xl text-slate-300 mb-2 block">
                       cloud_upload
                     </span>
-                    <p className="text-slate-600 font-semibold text-sm mb-1">
+                    <p className="text-slate-300 font-semibold text-sm mb-1">
                       Drag & drop landscape images here
                     </p>
-                    <p className="text-slate-400 text-xs mb-3">PNG, JPG, WEBP (max 3 MB each)</p>
-                    <label className="inline-block bg-slate-800 hover:bg-slate-900 text-white px-4 py-2 rounded-lg font-semibold cursor-pointer text-xs">
+                    <p className="text-slate-300 text-xs mb-3">PNG, JPG, WEBP (max 3 MB each)</p>
+                    <label className="inline-block bg-[#C2410C] hover:bg-[#9A3412] text-white text-white px-4 py-2 rounded-lg font-semibold cursor-pointer text-xs">
                       Browse Files
                       <input
                         type="file"
@@ -914,14 +855,14 @@ export default function AdminRoutes() {
                   </div>
 
                   {form.images.length > 0 && (
-                    <div className="grid grid-cols-2 sm:grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                       {form.images.map((img, i) => (
                         <div
                           key={i}
-                          className="relative group rounded-xl overflow-hidden border border-slate-300 aspect-video"
+                          className="relative group rounded-xl overflow-hidden border border-slate-700 aspect-video"
                         >
                           <img src={img} alt="" className="w-full h-full object-cover" />
-                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <div className="absolute inset-0 bg-black/50 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity flex items-center justify-center">
                             <button
                               type="button"
                               onClick={() =>
@@ -941,171 +882,45 @@ export default function AdminRoutes() {
                   )}
                 </div>
               )}
-            </div>
-
-            {/* Modal Footer */}
-            <div className="px-6 md:px-8 py-4 border-t border-slate-200 bg-slate-50 rounded-b-2xl">
-              {errors.submit && (
-                <div className="mb-3 flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 px-4 py-2.5 rounded-lg text-sm">
-                  <span className="material-icons text-[18px]">error_outline</span>
-                  {errors.submit}
-                </div>
-              )}
-              <div className="flex items-center justify-between gap-3">
-                <button
-                  type="button"
-                  onClick={step === 0 ? () => setShowForm(false) : handleBack}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 transition-colors text-sm font-semibold"
-                >
-                  <span className="material-icons text-[18px]">
-                    {step === 0 ? 'close' : 'arrow_back'}
-                  </span>
-                  {step === 0 ? 'Cancel' : 'Back'}
-                </button>
-
-                <div className="text-xs text-slate-500">
-                  Step {step + 1} of {STEPS.length}
-                </div>
-
-                {isLastStep ? (
-                  <button
-                    type="button"
-                    onClick={handleSubmit}
-                    disabled={saving}
-                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white font-bold text-sm transition-colors"
-                  >
-                    {saving ? (
-                      <>
-                        <span className="material-icons animate-spin text-[18px]">refresh</span>{' '}
-                        Saving...
-                      </>
-                    ) : (
-                      <>
-                        <span className="material-icons text-[18px]">
-                          {editing ? 'save' : 'add_circle'}
-                        </span>{' '}
-                        {editing ? 'Update Route' : 'Create Route'}
-                      </>
-                    )}
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#C2410C] hover:bg-[#9A3412] text-white font-bold text-sm transition-colors shadow-sm"
-                  >
-                    Next <span className="material-icons text-[18px]">arrow_forward</span>
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+            
+      </AdminStepModal>
 
       {/* Routes Table */}
       {loading ? (
-        <div className="text-center py-20 text-slate-600">Loading routes...</div>
+        <div className="text-center py-20 text-slate-300">Loading routes...</div>
       ) : visibleRoutes.length === 0 ? (
-        <div className="text-center py-20 text-slate-500">
+        <div className="text-center py-20 text-slate-300">
           <span className="material-icons text-5xl mb-3 block opacity-30">alt_route</span>
           No routes found. Click "Add Route" to create one.
         </div>
-      ) : (
-        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-left text-slate-500 border-b border-slate-200 bg-slate-50">
-                  <th className="px-4 py-3 font-bold text-slate-600 text-xs uppercase">Route</th>
-                  <th className="px-4 py-3 font-bold text-slate-600 text-xs uppercase">Category</th>
-                  <th className="px-4 py-3 font-bold text-slate-600 text-xs uppercase">
-                    Distance & Duration
-                  </th>
-                  <th className="px-4 py-3 font-bold text-slate-600 text-xs uppercase">
-                    Key Passes
-                  </th>
-                  <th className="px-4 py-3 font-bold text-slate-600 text-xs uppercase">Permits</th>
-                  <th className="px-4 py-3 font-bold text-slate-600 text-xs uppercase text-right">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {visibleRoutes.map((route) => (
-                  <tr
-                    key={route._id || route.id || route.slug}
-                    className="border-b border-slate-200 hover:bg-slate-100/70 transition-colors"
-                  >
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={
-                            route.images?.[0] ||
-                            'https://images.pexels.com/photos/5204954/pexels-photo-5204954.jpeg?auto=compress&cs=tinysrgb&w=400'
-                          }
-                          alt=""
-                          className="w-11 h-11 rounded-lg object-cover shrink-0"
-                        />
-                        <div>
-                          <p className="font-bold text-slate-800">{route.title}</p>
-                          <p className="text-[13px] text-slate-600">
-                            {route.from_location} → {route.to_location} · {route.best_season}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3">
-                      <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-orange-100 text-[#9A3412] border border-orange-300">
-                        {CATEGORY_LABELS[route.category] || route.category}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-slate-600">
-                      <div className="font-semibold text-slate-800">
-                        {ensureApprox(route.approx_distance)}
-                      </div>
-                      <div className="text-xs text-slate-500">
-                        {ensureApprox(route.approx_duration)}
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-xs text-slate-600">
-                      {route.key_passes?.map((p) => `${p.name} (${p.altitude})`).join(', ') || '—'}
-                    </td>
-                    <td className="px-4 py-3">
-                      <span
-                        className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
-                          route.permits_required
-                            ? 'bg-amber-100 text-amber-800'
-                            : 'bg-green-100 text-green-800'
-                        }`}
-                      >
-                        {route.permits_required ? 'EDF / PAP' : 'No Permit'}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-right whitespace-nowrap">
-                      <button
-                        type="button"
-                        onClick={() => openEdit(route)}
-                        className="text-[#C2410C] hover:text-[#9A3412] mr-3 transition-colors"
-                        title="Edit Route"
-                      >
-                        <span className="material-icons text-[18px]">edit</span>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setDeleteTarget(route)}
-                        className="text-red-600 hover:text-red-600 transition-colors"
-                        title="Delete Route"
-                      >
-                        <span className="material-icons text-[18px]">delete</span>
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      ) : visibleRoutes.length === 0 ? (
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl text-center py-14 text-slate-300 shadow-sm">No routes found in this category.</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {visibleRoutes.map((route) => (
+              <AdminCard
+                key={route._id}
+                image={route.thumbnail || (route.images && route.images[0])}
+                title={route.title}
+                subtitle={CATEGORY_LABELS[route.category] || route.category}
+                topLeftBadges={[
+                  {
+                    label: route.permit_badge || (route.permit_required ? 'Permit Required' : 'No Permit'),
+                    className: route.permit_required
+                      ? 'bg-amber-950/85 text-amber-200 border border-amber-400/40'
+                      : 'bg-emerald-950/85 text-emerald-200 border border-emerald-400/40',
+                  },
+                ]}
+                topRightBadge={route.distance || null}
+                bannerBottomLeft={route.routeLine || null}
+                bannerBottomRight={route.duration || null}
+                tags={(route.key_passes || []).map((p) => p.altitude ? (p.name + ' (' + p.altitude + ')') : p.name)}
+                tagsLabel="Key Passes"
+                onEdit={() => openEdit(route)}
+                onDelete={() => setDeleteTarget(route)}
+              />
+            ))}
           </div>
-        </div>
       )}
 
       <DeleteConfirmModal

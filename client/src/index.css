@@ -25,16 +25,28 @@ body {
 .text-\[11px\] { font-size: 0.8125rem !important; }
 .text-\[12px\] { font-size: 0.875rem !important; }
 
-/* Darken washed-out grey text colours for WCAG AA contrast */
-.text-slate-400 { color: #64748b !important; }
-.text-slate-500 { color: #475569 !important; }
-.text-slate-600 { color: #374151 !important; }
+/* Darken washed-out grey text colours for WCAG AA contrast on light public pages */
+:not(.admin-dark) > .text-slate-400,
+.text-slate-400:not(.admin-dark *) { color: #64748b !important; }
+:not(.admin-dark) > .text-slate-500,
+.text-slate-500:not(.admin-dark *) { color: #475569 !important; }
+:not(.admin-dark) > .text-slate-600,
+.text-slate-600:not(.admin-dark *) { color: #374151 !important; }
 
 /* Body paragraphs at text-sm → bump to ~15px, good line-height */
 p.text-sm {
   font-size: 0.9375rem !important;
   line-height: 1.75 !important;
+}
+p.text-sm:not(.admin-dark *) {
   color: #1e293b !important;
+}
+
+.admin-dark,
+.admin-dark input,
+.admin-dark select,
+.admin-dark textarea {
+  color-scheme: dark;
 }
 
 @layer components {

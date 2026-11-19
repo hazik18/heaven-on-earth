@@ -31,8 +31,8 @@ export default function SingleImageUpload({
 
   return (
     <div className="space-y-2">
-      <label className="text-[13px] font-bold text-slate-700 uppercase block">
-        {label} {required && <span className="text-red-600">*</span>}
+      <label className="text-[13px] font-bold text-slate-200 uppercase block">
+        {label} {required && <span className="text-red-400">*</span>}
       </label>
 
       {/* Drag-and-drop + device upload zone */}
@@ -49,25 +49,25 @@ export default function SingleImageUpload({
         onDragLeave={() => setDragOver(false)}
         className={`border-2 border-dashed rounded-xl p-4 text-center transition-colors ${
           dragOver
-            ? 'border-[#C2410C] bg-orange-50'
-            : 'border-slate-300 bg-slate-50 hover:border-slate-400'
+            ? 'border-[#EA580C] bg-orange-500/10'
+            : 'border-slate-700 bg-slate-950/60 hover:border-slate-500'
         }`}
       >
         {value ? (
-          <div className="flex items-center gap-4 text-left">
+          <div className="flex items-center gap-3 sm:gap-4 text-left">
             <img
               src={value}
               alt={label}
-              className="w-16 h-16 rounded-lg object-cover border border-slate-200 shrink-0 bg-white"
+              className="w-16 h-16 rounded-lg object-cover border border-slate-700 shrink-0 bg-slate-800"
             />
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-semibold text-slate-700 truncate">
+              <p className="text-xs font-semibold text-slate-200 truncate">
                 {value.startsWith('data:') ? 'Uploaded image from device' : value}
               </p>
-              <div className="flex items-center gap-3 mt-2">
+              <div className="flex flex-wrap items-center gap-3 mt-2">
                 <label
                   htmlFor={inputId}
-                  className="cursor-pointer text-xs font-bold text-[#C2410C] hover:text-[#9A3412]"
+                  className="cursor-pointer text-xs font-bold text-orange-400 hover:text-orange-300"
                 >
                   Replace file
                 </label>
@@ -77,7 +77,7 @@ export default function SingleImageUpload({
                     setUploadError('');
                     onChange('');
                   }}
-                  className="text-xs font-bold text-red-600 hover:text-red-700"
+                  className="text-xs font-bold text-red-400 hover:text-red-300"
                 >
                   Remove
                 </button>
@@ -86,12 +86,12 @@ export default function SingleImageUpload({
           </div>
         ) : (
           <div className="flex flex-col sm:flex-row items-center justify-center gap-2 py-1">
-            <span className="material-icons text-slate-500 text-2xl">cloud_upload</span>
-            <p className="text-xs text-slate-600">
+            <span className="material-icons text-slate-300 text-2xl">cloud_upload</span>
+            <p className="text-xs text-slate-300">
               Drag & drop an image here, or{' '}
               <label
                 htmlFor={inputId}
-                className="cursor-pointer font-bold text-[#C2410C] hover:text-[#9A3412] underline"
+                className="cursor-pointer font-bold text-orange-400 hover:text-orange-300 underline"
               >
                 browse from device
               </label>
@@ -121,15 +121,15 @@ export default function SingleImageUpload({
           onChange(e.target.value);
         }}
         placeholder={placeholder}
-        className={`w-full bg-white border rounded-lg px-4 py-2.5 text-[15px] text-slate-900 outline-none focus:ring-2 focus:ring-orange-500/20 ${
+        className={`w-full bg-slate-950 border rounded-lg px-4 py-2.5 text-[15px] text-slate-100 placeholder-slate-400 outline-none focus:ring-2 focus:ring-orange-500/20 ${
           error || uploadError
-            ? 'border-red-400 focus:border-red-500'
-            : 'border-slate-300 focus:border-[#C2410C]'
+            ? 'border-red-500 focus:border-red-400'
+            : 'border-slate-700 focus:border-[#EA580C]'
         }`}
       />
 
       {(uploadError || error) && (
-        <p className="text-red-600 text-xs flex items-center gap-1">
+        <p className="text-red-400 text-xs flex items-center gap-1">
           <span className="material-icons text-[14px]">error_outline</span>
           {uploadError || error}
         </p>
